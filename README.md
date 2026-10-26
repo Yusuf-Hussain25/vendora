@@ -2,7 +2,7 @@
 
 **Independent stores. One cart. Live delivery.**
 
-Vendora is a multi-vendor marketplace for fashion, fresh groceries, electronics and home goods. Shoppers check out across many independent stores in a single cart and follow their rider live on a map. Sellers run their own storefronts with an AI listing assistant and flash deals, admins approve stores and dispatch riders, and riders hand over orders with a 4-digit door code.
+Vendora is a multi-vendor marketplace for India: fashion, fresh groceries and Indian pantry brands, the latest iPhone, Mac and Galaxy devices, and home goods, all priced in rupees. Shoppers check out across many independent stores in a single cart and follow their rider live on a map. Sellers run their own storefronts with an AI listing assistant and flash deals, admins approve stores and dispatch riders, and riders hand over orders with a 4-digit door code.
 
 ![Vendora home page](docs/screenshots/home.png)
 
@@ -40,13 +40,24 @@ Editorial luxury meets Swiss precision: a calm grid, generous spacing and real p
 | Warm grey | `#DDD9D0` | Borders |
 | Sale red | `#D83A36` | Sale prices and discount badges |
 
-- **Type:** Instrument Serif for headlines and campaigns, Inter for navigation, prices and controls
+- **Type:** Instrument Serif for the hero and campaigns, DM Serif Display for the wordmark and section titles, Inter for navigation, prices and controls
 - **Shape:** 6–10 px radii on cards and inputs, pill buttons, hairline borders, almost no shadow
 - **Motion:** slight image zoom on hover, colour transitions, nothing that loops; `prefers-reduced-motion` respected
+- **Homepage:** a three-slide hero (iPhone 17 Pro, MacBook Pro M5, Kirana Corner) with real prices from the catalog, keyboard controls and autoplay that pauses on hover and for reduced motion; serif section titles with subtitles
+- **Product photography:** new products have their backgrounds removed (rembg, ISNet) so cut-outs sit cleanly in the catalog; the original lifestyle photo follows in the gallery and leads on the New launches cards
 - **Header:** forest announcement bar (the live coupon and the real free-delivery rule), Categories dropdown, search, and a delivery-address picker that sets your default address for checkout
 - **Dark theme:** opt-in from the footer or dashboards, saved per browser and applied before first paint
 
 All tokens live in `src/app/globals.css`.
+
+## Built for India
+
+- **Rupees everywhere:** prices, delivery fees and coupons in ₹ with Indian digit grouping (₹1,34,900) and compact lakh figures on dashboards
+- **All states and union territories** in the address form, loaded live from the CountriesNow API (with a bundled fallback), plus city suggestions per state
+- **PIN code lookup:** type a 6-digit PIN and the city and state fill in from the India Post directory (api.postalpincode.in), with tappable locality suggestions
+- **Map placement by PIN:** addresses without a GPS pin are placed with OpenStreetMap Nominatim so the delivery map still works
+- **+91 mobile numbers** validated and formatted on the server; only Indian addresses are accepted
+- **Delivery rule:** free delivery on each store's items over ₹499, otherwise ₹49
 
 ## Features
 
@@ -172,7 +183,7 @@ Everything beyond the database and auth secret is optional. Features switch on w
 | Card payments | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` | Cash on delivery only; the card option is hidden |
 | AI listing assistant | `AI_API_KEY`, `AI_BASE_URL`, `AI_MODEL` | The "Write with AI" button is hidden |
 | Google sign-in | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` | Email and password only |
-| Currency | `NEXT_PUBLIC_CURRENCY` (ISO code, default `USD`) | US dollars |
+| Currency | `NEXT_PUBLIC_CURRENCY` (default `INR`) | Indian rupees |
 
 **Cloudinary**: Settings → Upload → Upload presets → *Add upload preset* → Signing mode **Unsigned**, folder `vendora`. Only the cloud name and preset name go in `.env`; the API secret is never needed.
 
@@ -182,11 +193,13 @@ Everything beyond the database and auth secret is optional. Features switch on w
 
 ## Demo data
 
-`npm run seed` builds a believable marketplace using the free [DummyJSON](https://dummyjson.com) product catalog:
+`npm run seed` builds a believable Indian marketplace:
 
-- 8 approved stores (with monogram logos and banner photography shipped in `public/`) and 1 pending application, ~180 products with real photos, sizes for clothes and shoes, pack sizes for groceries, and live flash deals
-- 12 shoppers with [randomuser.me](https://randomuser.me) portraits and San Francisco addresses, 3 riders, 4 coupons (one expired)
-- 100 orders spread over the last 30 days in every status, including one on its way with a rider on the map, plus reviews
+- 9 approved stores in **Bengaluru** (Indiranagar, Koramangala, Jayanagar, HSR Layout) and **Mumbai** (Andheri, Bandra, Lower Parel, Colaba), plus a pending application from Pune
+- **250+ products in rupees:** the current Apple line-up (iPhone 17 Pro Max, iPhone Air, iPhone 17, MacBook Pro M5, MacBook Air M4, iMac, Mac mini, iPads, AirPods, Apple Watch), Galaxy S25 Ultra, Z Fold7 and Z Flip7, Pixel 10 Pro, OnePlus 13 and PS5 Pro; Indian pantry brands such as Parle-G, Britannia, Amul, Tata, Maggi and Balaji with real pack photos; and the DummyJSON catalog for fashion, beauty, home and sports
+- Live flash deals, sizes for clothes and shoes, pack sizes for groceries
+- 12 shoppers and 3 riders with +91 numbers and real localities and PIN codes; live orders always pair a store and shopper in the same city, so the rider map makes sense
+- 120 orders over the last 30 days in every status, reviews, and 4 coupons in ₹ (one expired)
 
 The demo logins come from `.env` only:
 
@@ -227,6 +240,7 @@ When the demo email and password are set, the login page shows **Explore with a 
 | ![Flash deals](docs/screenshots/deals.png) | ![Store page](docs/screenshots/store.png) |
 | ![Cart](docs/screenshots/cart.png) | ![Live order tracking](docs/screenshots/tracking.png) |
 | ![Login](docs/screenshots/login.png) | ![Seller dashboard](docs/screenshots/seller.png) |
+| ![India address form with PIN lookup](docs/screenshots/address.png) | ![Kirana Corner store](docs/screenshots/store.png) |
 | ![Admin console (dark theme)](docs/screenshots/admin.png) | ![Rider app](docs/screenshots/rider.png) |
 
 ![Dark evening theme](docs/screenshots/home-dark.png)
@@ -242,7 +256,7 @@ When the demo email and password are set, the login page shows **Explore with a 
 
 ## Credits
 
-Product names, photos and review snippets come from [DummyJSON](https://dummyjson.com); lifestyle and store photography from [Unsplash](https://unsplash.com) (sources listed in `public/images/CREDITS.json`); portraits from [randomuser.me](https://randomuser.me); map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. Built on ideas from five course projects, merged, rewritten and redesigned.
+Electronics photos come from [Wikimedia Commons](https://commons.wikimedia.org) (CC0 / CC BY / CC BY-SA, authors and licences in `public/products/CREDITS-electronics.json`); Indian grocery data and pack photos from [Open Food Facts](https://world.openfoodfacts.org) (ODbL / CC BY-SA, `public/products/CREDITS-grocery.json`); other product names, photos and review snippets from [DummyJSON](https://dummyjson.com); lifestyle and store photography from [Unsplash](https://unsplash.com) (sources listed in `public/images/CREDITS.json`); portraits from [randomuser.me](https://randomuser.me); map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. Built on ideas from five course projects, merged, rewritten and redesigned.
 
 ## Author
 
