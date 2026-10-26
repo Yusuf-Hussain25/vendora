@@ -90,7 +90,7 @@ export default function LiveTracking({ orderId, status: initialStatus, store, ho
           )}
         </div>
         {showOtp && otp && !FINAL.includes(status) && (
-          <div className="rounded-[18px] border border-dashed border-accent/50 bg-accent-soft px-4 py-3">
+          <div className="rounded-[10px] border border-dashed border-accent/50 bg-accent-soft px-4 py-3">
             <p className="text-xs text-text-2 flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-accent-text" />
               Delivery code

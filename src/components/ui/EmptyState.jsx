@@ -2,7 +2,7 @@ export default function EmptyState({ icon: Icon, title, children, action, classN
   return (
     <div className={`card flex flex-col items-center text-center px-6 py-14 ${className}`}>
       {Icon && (
-        <span className="mb-5 grid place-items-center w-16 h-16 rounded-[22px] bg-accent-soft text-accent-text">
+        <span className="mb-5 grid place-items-center w-16 h-16 rounded-[12px] bg-accent-soft text-accent-text">
           <Icon className="w-7 h-7" />
         </span>
       )}

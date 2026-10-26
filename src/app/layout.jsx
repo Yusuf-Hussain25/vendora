@@ -1,6 +1,5 @@
 import "./globals.css";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Inter, Instrument_Serif } from "next/font/google";
 import prisma from "@/lib/prisma";
 import { getCurrentUser, isSeller } from "@/lib/session";
 import { themeInitScript } from "@/lib/theme";
@@ -9,6 +8,9 @@ import UserProvider from "@/components/providers/UserProvider";
 import CartProvider from "@/components/providers/CartProvider";
 import WishlistProvider from "@/components/providers/WishlistProvider";
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument", display: "swap" });
+
 export const metadata = {
   title: { default: "Vendora: shop independent stores in one cart", template: "%s · Vendora" },
   description:
@@ -16,12 +18,7 @@ export const metadata = {
   icons: { icon: "/icon.svg" },
 };
 
-export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#06090c" },
-    { media: "(prefers-color-scheme: light)", color: "#f3f6f6" },
-  ],
-};
+export const viewport = { themeColor: "#f7f5ef" };
 
 export default async function RootLayout({ children }) {
   const user = await getCurrentUser();
@@ -40,12 +37,11 @@ export default async function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${instrument.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        <div className="aurora" aria-hidden="true" />
         <ThemeProvider>
           <UserProvider user={summary}>
             <CartProvider key={user?.id || "guest"} signedIn={Boolean(user)} initialCart={user?.cart}>

@@ -15,9 +15,9 @@ export function PageHeader({ title, subtitle, children }) {
 export function StatCard({ icon: Icon, label, value, hint, tone = "accent" }) {
   const tones = {
     accent: "bg-accent-soft text-accent-text",
-    info: "bg-[rgba(99,102,241,.15)] text-[#a5b4fc]",
-    warning: "bg-[rgba(245,158,11,.15)] text-warning",
-    deal: "bg-[rgba(251,113,133,.15)] text-deal",
+    info: "bg-surface-2 text-text",
+    warning: "bg-warning/10 text-warning",
+    deal: "bg-sale-soft text-deal",
   };
   return (
     <div className="card p-5">

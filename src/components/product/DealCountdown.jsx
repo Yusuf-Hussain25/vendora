@@ -10,6 +10,7 @@ function parts(endsAt) {
   return { h: Math.floor(s / 3600), m: Math.floor((s % 3600) / 60), s: s % 60, done: ms === 0 };
 }
 
+// Counts down to a real deal end time. Variants: inline text, blocks (light) or tiles (on forest).
 export default function DealCountdown({ endsAt, variant = "inline", className = "" }) {
   const [time, setTime] = useState(() => parts(endsAt));
 
@@ -18,17 +19,25 @@ export default function DealCountdown({ endsAt, variant = "inline", className = 
     return () => clearInterval(id);
   }, [endsAt]);
 
-  if (time.done) return <span className={`text-xs text-text-3 ${className}`}>Deal ended</span>;
+  if (time.done) return <span className={`text-xs opacity-70 ${className}`}>Deal ended</span>;
 
-  if (variant === "blocks") {
+  if (variant === "tiles" || variant === "blocks") {
+    const tile =
+      variant === "tiles"
+        ? "bg-ivory text-forest"
+        : "bg-panel border border-border text-text";
     return (
-      <div className={`flex items-center gap-1.5 font-mono ${className}`} suppressHydrationWarning aria-label="Time left on this deal">
-        {[time.h, time.m, time.s].map((v, i) => (
-          <span key={i} className="flex items-center gap-1.5">
-            <span className="min-w-[38px] h-10 px-1.5 grid place-items-center rounded-[12px] bg-surface-2 border border-border text-lg font-semibold tabular-nums" suppressHydrationWarning>
+      <div className={`flex items-center gap-2 ${className}`} role="timer" aria-label={`${time.h} hours ${time.m} minutes left`}>
+        {[
+          [time.h, "Hours"],
+          [time.m, "Minutes"],
+          [time.s, "Seconds"],
+        ].map(([v, label]) => (
+          <span key={label} className={`w-[62px] sm:w-[68px] py-2 rounded-md text-center ${tile}`}>
+            <span className="block text-2xl sm:text-[28px] font-semibold leading-none tabular-nums" suppressHydrationWarning>
               {pad(v)}
             </span>
-            {i < 2 && <span className="text-text-3">:</span>}
+            <span className="block mt-1 text-[10.5px] opacity-70">{label}</span>
           </span>
         ))}
       </div>
@@ -36,7 +45,7 @@ export default function DealCountdown({ endsAt, variant = "inline", className = 
   }
 
   return (
-    <span className={`font-mono tabular-nums ${className}`} suppressHydrationWarning>
+    <span className={`tabular-nums ${className}`} suppressHydrationWarning>
       {time.h > 0 && `${time.h}h `}
       {pad(time.m)}m {pad(time.s)}s
     </span>

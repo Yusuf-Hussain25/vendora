@@ -45,7 +45,7 @@ export default function BuyBox({ product }) {
   return (
     <div className="space-y-6">
       {deal && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[18px] px-4 py-3 bg-[rgba(251,113,133,.12)] border border-[rgba(251,113,133,.3)]">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[10px] px-4 py-3 bg-sale-soft border border-sale/30">
           <span className="inline-flex items-center gap-2 text-sm font-semibold text-deal">
             <Zap className="w-4 h-4 fill-current" />
             Flash deal
@@ -79,7 +79,7 @@ export default function BuyBox({ product }) {
                 role="radio"
                 aria-checked={size === s}
                 onClick={() => setSize(s)}
-                className={`min-w-[52px] h-11 px-3 rounded-[14px] border text-sm font-medium transition ${
+                className={`min-w-[52px] h-11 px-3 rounded-[8px] border text-sm font-medium transition ${
                   size === s
                     ? "border-accent bg-accent-soft text-accent-text ring-2 ring-accent-soft"
                     : `border-border bg-surface hover:border-border-strong ${sizeError && !size ? "border-danger/60" : ""}`
@@ -133,7 +133,7 @@ export default function BuyBox({ product }) {
           [ShieldCheck, "Code-protected", "Handed over with your code"],
           [RotateCcw, "Easy returns", "Within 7 days of delivery"],
         ].map(([Icon, title, text]) => (
-          <li key={title} className="rounded-[16px] border border-border bg-surface p-3.5">
+          <li key={title} className="rounded-[10px] border border-border bg-surface p-3.5">
             <Icon className="w-[18px] h-[18px] text-accent-text" />
             <p className="mt-2 text-sm font-medium">{title}</p>
             <p className="text-xs text-text-3 mt-0.5">{text}</p>

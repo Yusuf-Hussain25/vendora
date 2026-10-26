@@ -5,7 +5,7 @@ export default function Skeleton({ className = "", style }) {
 export function ProductCardSkeleton() {
   return (
     <div className="card p-2.5">
-      <Skeleton className="aspect-square w-full !rounded-[16px]" />
+      <Skeleton className="aspect-square w-full !rounded-[10px]" />
       <div className="p-2 pt-3 space-y-2">
         <Skeleton className="h-3 w-1/3" />
         <Skeleton className="h-4 w-4/5" />
@@ -29,7 +29,7 @@ export function RowsSkeleton({ rows = 5 }) {
   return (
     <div className="space-y-3">
       {Array.from({ length: rows }, (_, i) => (
-        <Skeleton key={i} className="h-20 w-full !rounded-[18px]" />
+        <Skeleton key={i} className="h-20 w-full !rounded-[10px]" />
       ))}
     </div>
   );

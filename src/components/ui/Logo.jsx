@@ -1,33 +1,21 @@
-import { useId } from "react";
 import Link from "next/link";
 
-// Vendora mark: a shopping-bag silhouette whose body folds into a "V"
-export function LogoMark({ size = 32, className = "" }) {
-  // Unique per instance: a duplicate id inside a hidden copy (e.g. the desktop sidebar on
-  // mobile) would leave every other copy without its gradient
-  const gradientId = `vendora-mark-${useId().replace(/:/g, "")}`;
+// Vendora mark: two leaves growing from one stem into a "V"
+export function LogoMark({ size = 30, className = "" }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true" className={className}>
-      <defs>
-        <linearGradient id={gradientId} x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#2dd4bf" />
-          <stop offset=".45" stopColor="#14b8a6" />
-          <stop offset="1" stopColor="#6366f1" />
-        </linearGradient>
-      </defs>
-      <rect width="32" height="32" rx="10" fill={`url(#${gradientId})`} />
-      <path d="M12 11V9.5a4 4 0 0 1 8 0V11" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity=".85" />
-      <path d="M8.5 13.5 16 24l7.5-10.5" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="16" cy="13.5" r="1.6" fill="#fff" />
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true" className={`text-accent ${className}`}>
+      <path d="M15.6 28.5C10.4 23.4 5.2 15.6 5.4 4.6c6.3 2.6 10.6 9.9 10.2 23.9Z" fill="currentColor" />
+      <path d="M16.6 28.5c.5-10.6 4.6-18.6 11.2-22.4.9 10-4.2 17.6-11.2 22.4Z" fill="currentColor" opacity=".72" />
+      <path d="M15.4 26.5C12.6 20.5 10 14.2 7.4 8.4M17.2 26.3c2-6.4 4.8-12.1 8.8-17" stroke="var(--bg)" strokeWidth="1" strokeLinecap="round" fill="none" opacity=".55" />
     </svg>
   );
 }
 
-export default function Logo({ href = "/", size = 32, showText = true, className = "" }) {
+export default function Logo({ href = "/", size = 30, showText = true, className = "" }) {
   return (
-    <Link href={href} className={`inline-flex items-center gap-2.5 shrink-0 ${className}`} aria-label="Vendora home">
+    <Link href={href} className={`inline-flex items-center gap-2 shrink-0 ${className}`} aria-label="Vendora home">
       <LogoMark size={size} />
-      {showText && <span className="text-[19px] font-semibold tracking-tight">Vendora</span>}
+      {showText && <span className="font-display text-[27px] leading-none tracking-[-0.01em] text-text">Vendora</span>}
     </Link>
   );
 }

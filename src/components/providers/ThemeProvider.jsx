@@ -9,15 +9,12 @@ const ThemeContext = createContext({ resolved: "dark", toggle: () => {} });
 export const useTheme = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }) {
-  const [resolved, setResolved] = useState("dark");
+  const [resolved, setResolved] = useState("light");
 
   useEffect(() => {
-    // Sync with the theme the inline <head> script already applied, and follow the OS while on "system"
-    const sync = () => setResolved(resolveTheme(getThemePreference()));
-    sync();
-    const media = window.matchMedia("(prefers-color-scheme: light)");
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    // Sync with the theme the inline <head> script already applied from localStorage
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the saved theme is only readable after mount
+    setResolved(resolveTheme(getThemePreference()));
   }, []);
 
   const toggle = useCallback(() => {
@@ -32,9 +29,8 @@ export default function ThemeProvider({ children }) {
       <Toaster
         theme={resolved}
         position="bottom-right"
-        richColors
         closeButton
-        toastOptions={{ style: { borderRadius: 16, fontFamily: "var(--font-sans)" } }}
+        toastOptions={{ style: { borderRadius: 10, fontFamily: "var(--font-sans)" } }}
       />
     </ThemeContext.Provider>
   );

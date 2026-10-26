@@ -1,26 +1,24 @@
-// Theme preference: "light" | "dark" | "system" (default). Applied as data-theme on <html>.
+// Theme preference: "light" (default) | "dark". Applied as data-theme on <html>.
+// Vendora's brand is the warm ivory light theme; dark is an opt-in evening mode.
 export const THEME_KEY = "vendora-theme";
 
 // Runs inline in <head> before first paint so the saved theme never flashes
-export const themeInitScript = `try{var t=localStorage.getItem('${THEME_KEY}');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+export const themeInitScript = `try{if(localStorage.getItem('${THEME_KEY}')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}`;
 
 export const getThemePreference = () => {
   try {
-    return localStorage.getItem(THEME_KEY) || "system";
+    return localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light";
   } catch {
-    return "system";
+    return "light";
   }
 };
 
-export const resolveTheme = (pref = getThemePreference()) => {
-  if (pref !== "system") return pref;
-  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-};
+export const resolveTheme = (pref = getThemePreference()) => (pref === "dark" ? "dark" : "light");
 
 export const applyTheme = (pref = getThemePreference()) => {
   const root = document.documentElement;
-  if (pref === "system") root.removeAttribute("data-theme");
-  else root.setAttribute("data-theme", pref);
+  if (pref === "dark") root.setAttribute("data-theme", "dark");
+  else root.removeAttribute("data-theme");
 };
 
 export const setThemePreference = (pref) => {

@@ -26,14 +26,14 @@ export default function Modal({ open, onClose, title, description, children, siz
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6">
-      <button aria-label="Close dialog" className="absolute inset-0 bg-black/55 backdrop-blur-sm fade-up" onClick={onClose} />
+      <button aria-label="Close dialog" className="absolute inset-0 bg-black/40 fade-up" onClick={onClose} />
       <div
         ref={panelRef}
         tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className={`relative w-full ${width} max-h-[92dvh] overflow-y-auto rounded-t-[28px] sm:rounded-[28px] bg-panel-solid border border-border shadow-lg fade-up outline-none`}
+        className={`relative w-full ${width} max-h-[92dvh] overflow-y-auto rounded-t-[14px] sm:rounded-[14px] bg-panel-solid border border-border shadow-lg fade-up outline-none`}
       >
         {title && (
           <div className="sticky top-0 z-10 flex items-start justify-between gap-4 px-6 pt-6 pb-4 bg-panel-solid">

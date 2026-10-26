@@ -8,7 +8,7 @@ export default function StatusTimeline({ status, history = [] }) {
   if (status === "CANCELLED") {
     const note = history.find((h) => h.status === "CANCELLED")?.note;
     return (
-      <div className="flex items-start gap-3 rounded-[16px] p-4 bg-[rgba(244,63,94,.08)] border border-[rgba(244,63,94,.25)]">
+      <div className="flex items-start gap-3 rounded-[10px] p-4 bg-sale-soft border border-sale/30">
         <CircleX className="w-5 h-5 text-danger shrink-0" />
         <div>
           <p className="text-sm font-semibold">Order cancelled</p>
@@ -34,7 +34,7 @@ export default function StatusTimeline({ status, history = [] }) {
             )}
             <span
               className={`relative z-10 grid place-items-center w-7 h-7 rounded-full shrink-0 ${
-                done ? "bg-accent text-white" : active ? "bg-accent-soft text-accent-text ring-2 ring-accent" : "bg-surface-2 text-text-3"
+                done ? "bg-accent text-on-accent" : active ? "bg-accent-soft text-accent-text ring-2 ring-accent" : "bg-surface-2 text-text-3"
               }`}
             >
               {done ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : <span className={`w-2 h-2 rounded-full ${active ? "bg-accent pulse-dot text-accent" : "bg-text-3/50"}`} />}

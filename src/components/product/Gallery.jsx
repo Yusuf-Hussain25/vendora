@@ -33,7 +33,7 @@ export default function Gallery({ images, name }) {
             <button
               key={src}
               onClick={() => setIndex(i)}
-              className={`relative shrink-0 w-[72px] h-[72px] rounded-[16px] bg-surface-2 border transition ${
+              className={`relative shrink-0 w-[72px] h-[72px] rounded-[10px] bg-surface-2 border transition ${
                 i === index ? "border-accent ring-2 ring-accent-soft" : "border-border hover:border-border-strong"
               }`}
               aria-label={`Show image ${i + 1} of ${count}`}
@@ -44,7 +44,7 @@ export default function Gallery({ images, name }) {
           ))}
         </div>
       )}
-      <div className="relative flex-1 aspect-square card !rounded-[28px] overflow-hidden group">
+      <div className="relative flex-1 aspect-square card !rounded-[14px] overflow-hidden group">
         <button className="absolute inset-0 cursor-zoom-in" onClick={() => setZoom(true)} aria-label="Open full-size image">
           <Image src={images[index]} alt={name} fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain p-8 sm:p-12" />
         </button>
@@ -64,7 +64,7 @@ export default function Gallery({ images, name }) {
       </div>
 
       {zoom && (
-        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md fade-up" role="dialog" aria-modal="true" aria-label={`${name} images`}>
+        <div className="fixed inset-0 z-[100] bg-[#111512]/95 fade-up" role="dialog" aria-modal="true" aria-label={`${name} images`}>
           <button className="absolute top-4 right-4 z-10 btn btn-secondary btn-icon" onClick={() => setZoom(false)} aria-label="Close">
             <X />
           </button>
