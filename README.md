@@ -78,6 +78,11 @@ All tokens live in `src/app/globals.css`.
 - **Write with AI**: drafts the name, description, brand and tags from the cover photo (any OpenAI-compatible API, e.g. Gemini's free tier)
 - Flash deals: pick a discount and a duration, end early any time
 - Orders board: confirm, pack or cancel (stock restored), see the rider and timeline
+- **Inventory** table: every product with its SKU, stock, status (in stock, low, out, slow mover, hidden), units sold in 30 days, days of stock left and a suggested next step ("Restock 7", "Run a flash deal")
+  - Restock one product or a bulk selection, with an optional note such as a supplier invoice
+  - Stock count mode: type what is on the shelf, see the difference in red or green, apply all corrections at once
+  - Import counts from a spreadsheet (`SKU,Counted` CSV) and export the whole table as CSV
+  - Per-product alert level, a sidebar badge for low stock, and a stock history ledger (opening stock, sales, cancellations, restocks, counts, edits) with the balance after each change
 
 **Riders**
 - Go online, accept packed orders (atomic, so two riders can't claim the same one), confirm pickup
@@ -87,6 +92,7 @@ All tokens live in `src/app/globals.css`.
 **Admins**
 - Overview: sales, applications, customers, riders online, sales chart, orders by status, top stores
 - Approve, reject, pause and resume stores; assign riders to packed orders
+- Read-only inventory across every live store, with the same filters and CSV export
 - Add rider accounts, create and delete coupons, browse customers and their spend
 
 ## Tech stack
@@ -112,7 +118,7 @@ vendora/
 ├── scripts/seed.mjs            # demo data seeder
 ├── src/
 │   ├── proxy.js                # redirects signed-out visitors away from private areas
-│   ├── actions/                # server actions: cart, orders, address, seller, rider, admin, wishlist
+│   ├── actions/                # server actions: cart, orders, address, seller, inventory, rider, admin, wishlist
 │   ├── app/
 │   │   ├── (shop)/             # storefront: home, shop, product, deals, stores, cart, checkout, account
 │   │   ├── seller/             # seller hub
@@ -121,8 +127,8 @@ vendora/
 │   │   ├── login/              # split-screen auth page
 │   │   ├── api/                # Better Auth, live order status, Stripe webhook
 │   │   └── globals.css         # design tokens + component classes
-│   ├── components/             # ui/, layout/, product/, cart/, orders/, map/, seller/, admin/, rider/, dashboard/
-│   └── lib/                    # prisma, auth, session guards, pricing, queries, orders, upload, theme, format
+│   ├── components/             # ui/, layout/, product/, cart/, orders/, map/, seller/, inventory/, admin/, rider/, dashboard/
+│   └── lib/                    # prisma, auth, session guards, pricing, queries, orders, inventory, upload, theme, format
 └── docs/screenshots/
 ```
 
@@ -200,6 +206,7 @@ Everything beyond the database and auth secret is optional. Features switch on w
 - Live flash deals, sizes for clothes and shoes, pack sizes for groceries
 - 12 shoppers and 3 riders with +91 numbers and real localities and PIN codes; live orders always pair a store and shopper in the same city, so the rider map makes sense
 - 120 orders over the last 30 days in every status, reviews, and 4 coupons in ₹ (one expired)
+- A SKU for every product (`VND-1001` onwards) and a stock history that starts with the opening stock and lists every sale, so the ledger always adds up to the stock shown
 
 The demo logins come from `.env` only:
 
@@ -219,6 +226,7 @@ When the demo email and password are set, the login page shows **Explore with a 
 - Every server action and API route checks the session and role **from the database** (roles can't be set through sign-up)
 - Shoppers only see their own orders; the live-tracking API answers only the buyer, the store, the assigned rider or an admin
 - Prices, sizes, stock and coupons are re-validated on the server at checkout; stock is reserved atomically so it can't go below zero
+- Every stock change is written to the history in the same transaction as the change itself; sellers can only restock, count or view the history of their own products
 - Riders claim deliveries atomically and can only complete them with the customer's code
 - Card orders are marked paid only after Stripe confirms the payment; the webhook verifies Stripe's signature
 - Products and stores that aren't approved and active never appear to shoppers
@@ -240,6 +248,7 @@ When the demo email and password are set, the login page shows **Explore with a 
 | ![Flash deals](docs/screenshots/deals.png) | ![Store page](docs/screenshots/store.png) |
 | ![Cart](docs/screenshots/cart.png) | ![Live order tracking](docs/screenshots/tracking.png) |
 | ![Login](docs/screenshots/login.png) | ![Seller dashboard](docs/screenshots/seller.png) |
+| ![Seller inventory](docs/screenshots/inventory.png) | ![Stock history ledger](docs/screenshots/inventory-history.png) |
 | ![India address form with PIN lookup](docs/screenshots/address.png) | ![Kirana Corner store](docs/screenshots/store.png) |
 | ![Admin console (dark theme)](docs/screenshots/admin.png) | ![Rider app](docs/screenshots/rider.png) |
 
