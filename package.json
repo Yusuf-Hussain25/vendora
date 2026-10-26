@@ -1,6 +1,6 @@
 {
   "name": "vendora",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Vendora: a multi-vendor marketplace for fashion, groceries and everyday goods, with live delivery tracking.",
   "scripts": {
