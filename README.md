@@ -22,9 +22,31 @@ On top of the merge:
 
 - **Neon Postgres + Prisma** instead of three different MongoDB setups
 - **Better Auth** (self-hosted, no third-party account) instead of Clerk and hand-rolled JWTs
-- A **2026 redesign**: dark-first glass UI on an animated aurora, teal → indigo accent, Geist type, light theme, responsive from 390 px phones to wide desktops
+- An **editorial redesign**: warm ivory and deep forest green, Instrument Serif headlines with Inter for everything you shop with, art-directed lifestyle photography, fine borders instead of glass and gradients, and an optional dark evening theme. Responsive from 390 px phones to wide desktops
 - **Real checkout logic**: server-side price, size and stock checks, stock reserved in a transaction, per-store orders and delivery fees, coupon expiry enforced, Stripe payments verified with Stripe before orders count as paid
 - **One shared design system** and loading skeletons, empty states, toasts and keyboard-friendly controls on every screen
+
+## Design
+
+Editorial luxury meets Swiss precision: a calm grid, generous spacing and real photography, so the products and stores carry the page.
+
+| Token | Value | Used for |
+|---|---|---|
+| Ivory | `#F7F5EF` | Page background |
+| Cream | `#EEE9DF` | Secondary panels |
+| Forest | `#0E3B2E` | Primary buttons, selected states, brand moments |
+| Ink | `#171916` | Text |
+| Charcoal | `#656761` | Secondary text |
+| Warm grey | `#DDD9D0` | Borders |
+| Sale red | `#D83A36` | Sale prices and discount badges |
+
+- **Type:** Instrument Serif for headlines and campaigns, Inter for navigation, prices and controls
+- **Shape:** 6–10 px radii on cards and inputs, pill buttons, hairline borders, almost no shadow
+- **Motion:** slight image zoom on hover, colour transitions, nothing that loops; `prefers-reduced-motion` respected
+- **Header:** forest announcement bar (the live coupon and the real free-delivery rule), Categories dropdown, search, and a delivery-address picker that sets your default address for checkout
+- **Dark theme:** opt-in from the footer or dashboards, saved per browser and applied before first paint
+
+All tokens live in `src/app/globals.css`.
 
 ## Features
 
@@ -63,7 +85,7 @@ On top of the merge:
 | Framework | Next.js 16 (App Router, Server Components, Server Actions), React 19 |
 | Database | PostgreSQL on Neon, Prisma ORM |
 | Auth | Better Auth (email + password, optional Google), roles stored in the database |
-| Styling | Tailwind CSS v4 on top of CSS design tokens, Geist font, lucide-react icons |
+| Styling | Tailwind CSS v4 on top of CSS design tokens, Instrument Serif + Inter (next/font), lucide-react icons |
 | Maps | Leaflet + react-leaflet with OpenStreetMap tiles (no API key) |
 | Charts | Recharts |
 | Payments | Stripe Checkout (optional, test mode) and cash on delivery |
@@ -162,7 +184,7 @@ Everything beyond the database and auth secret is optional. Features switch on w
 
 `npm run seed` builds a believable marketplace using the free [DummyJSON](https://dummyjson.com) product catalog:
 
-- 8 approved stores and 1 pending application, ~180 products with real photos, sizes for clothes and shoes, pack sizes for groceries, and live flash deals
+- 8 approved stores (with monogram logos and banner photography shipped in `public/`) and 1 pending application, ~180 products with real photos, sizes for clothes and shoes, pack sizes for groceries, and live flash deals
 - 12 shoppers with [randomuser.me](https://randomuser.me) portraits and San Francisco addresses, 3 riders, 4 coupons (one expired)
 - 100 orders spread over the last 30 days in every status, including one on its way with a rider on the map, plus reviews
 
@@ -175,7 +197,7 @@ The demo logins come from `.env` only:
 | `NEXT_PUBLIC_DEMO_ADMIN_EMAIL` | Admin |
 | `NEXT_PUBLIC_DEMO_PASSWORD` | Shared password for the three demo logins |
 | `SEED_PASSWORD` | Password for every other seeded account |
-| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Your own private admin account |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Your own private admin account (re-running the seeder applies a changed password) |
 
 When the demo email and password are set, the login page shows **Explore with a demo account** with a role picker. The seeder is safe to re-run: it reuses existing records and refreshes flash deals so they're always live. Use `npm run seed -- --with you@example.com` to add orders, an address and wishlist items to your own account (sign up first).
 
@@ -201,19 +223,26 @@ When the demo email and password are set, the login page shows **Explore with a 
 
 | | |
 |---|---|
-| ![Shop with filters](docs/screenshots/shop.png) | ![Product page](docs/screenshots/product.png) |
-| ![Flash deals](docs/screenshots/deals.png) | ![Checkout](docs/screenshots/checkout.png) |
-| ![Live order tracking (light theme)](docs/screenshots/tracking.png) | ![Login](docs/screenshots/login.png) |
-| ![Seller dashboard](docs/screenshots/seller.png) | ![Seller products (light theme)](docs/screenshots/seller-products.png) |
-| ![Admin console](docs/screenshots/admin.png) | ![Rider app](docs/screenshots/rider.png) |
+| ![Shop by department](docs/screenshots/shop.png) | ![Product page](docs/screenshots/product.png) |
+| ![Flash deals](docs/screenshots/deals.png) | ![Store page](docs/screenshots/store.png) |
+| ![Cart](docs/screenshots/cart.png) | ![Live order tracking](docs/screenshots/tracking.png) |
+| ![Login](docs/screenshots/login.png) | ![Seller dashboard](docs/screenshots/seller.png) |
+| ![Admin console (dark theme)](docs/screenshots/admin.png) | ![Rider app](docs/screenshots/rider.png) |
 
-![Light theme](docs/screenshots/home-light.png)
+![Dark evening theme](docs/screenshots/home-dark.png)
 
 ![Mobile: home, product and live tracking](docs/screenshots/mobile.png)
 
+<details>
+<summary>Full home page</summary>
+
+![Full home page](docs/screenshots/home-full.png)
+
+</details>
+
 ## Credits
 
-Product names, photos and review snippets come from [DummyJSON](https://dummyjson.com); portraits from [randomuser.me](https://randomuser.me); map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. Built on ideas from five course projects, merged, rewritten and redesigned.
+Product names, photos and review snippets come from [DummyJSON](https://dummyjson.com); lifestyle and store photography from [Unsplash](https://unsplash.com) (sources listed in `public/images/CREDITS.json`); portraits from [randomuser.me](https://randomuser.me); map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors. Built on ideas from five course projects, merged, rewritten and redesigned.
 
 ## Author
 
