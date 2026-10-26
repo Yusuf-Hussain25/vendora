@@ -12,7 +12,7 @@ import { categoryBySlug } from "@/lib/catalog";
 import { money, numberCompact, percentOff } from "@/lib/format";
 import DealCountdown from "./DealCountdown";
 
-// variant "photo" shows a lifestyle photograph edge to edge (new launches); the default shows a cut-out on the image well
+// variant "photo" is the larger card used for new launches (bigger price and cart button)
 export default function ProductCard({ product, priority = false, showStore = false, variant }) {
   const photo = variant === "photo";
   const { add } = useCart();
@@ -25,8 +25,9 @@ export default function ProductCard({ product, priority = false, showStore = fal
   const saved = wishlist.has(product.id);
   const soldOut = product.stock <= 0;
   const needsSize = product.sizes?.length > 0;
-  // Photo cards prefer the original photograph over a background-removed cut-out
-  const image = photo ? product.images.find((src) => !src.endsWith(".webp")) || product.images[0] : product.images[0];
+  // Always the whole product, fitted in the frame (cut-outs lead each gallery). Filling a wide
+  // frame with portrait photos cropped phones to their middle, so no variant crops any more.
+  const image = product.images[0];
 
   const quickAdd = () => {
     // Sized items need a size choice, so send the shopper to the product page
@@ -42,7 +43,7 @@ export default function ProductCard({ product, priority = false, showStore = fal
 
   return (
     <article className="group relative flex flex-col bg-panel border border-border rounded-lg overflow-hidden transition-colors duration-200 hover:border-border-strong">
-      <div className={`relative bg-media overflow-hidden ${photo ? "aspect-[3/2] m-2.5 mb-0 rounded-md" : "aspect-square"}`}>
+      <div className="relative aspect-square bg-media overflow-hidden">
         <Link href={`/product/${product.id}`} aria-label={product.name} className="relative block w-full h-full">
           <Image
             src={image}
@@ -50,7 +51,7 @@ export default function ProductCard({ product, priority = false, showStore = fal
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1280px) 25vw, 20vw"
             priority={priority}
-            className={`transition-transform duration-500 ease-out group-hover:scale-[1.04] ${photo ? "object-cover" : "object-contain p-5 blend-media"}`}
+            className="object-contain p-5 blend-media transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />
         </Link>
         <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1">
