@@ -1,0 +1,1042 @@
+[
+ {
+  "name": "Parle-G Original Gluco Biscuits",
+  "brand": "Parle",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "70 g",
+  "images": [
+   "/products/parle-parle-g-biscuit.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "parle"
+  ],
+  "description": "Parle-G Original Gluco Biscuits, 70 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Bourbon Chocolate Cream Biscuits",
+  "brand": "Britannia",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 30,
+  "price": 30,
+  "unit": "100 g",
+  "images": [
+   "/products/britannia-bourbon.webp",
+   "/products/britannia-bourbon.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia"
+  ],
+  "description": "Britannia Bourbon Chocolate Cream Biscuits, 100 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Good Day Cashew Cookies",
+  "brand": "Britannia",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "52.5 g",
+  "images": [
+   "/products/britannia-good-day-cashew-cookies.webp",
+   "/products/britannia-good-day-cashew-cookies.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia"
+  ],
+  "description": "Britannia Good Day Cashew Cookies, 52.5 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Maggi 2-Minute Masala Noodles",
+  "brand": "Maggi",
+  "category": "grocery",
+  "subCategory": "Instant food",
+  "mrp": 14,
+  "price": 14,
+  "unit": "70 g",
+  "images": [
+   "/products/maggi-maggi.webp",
+   "/products/maggi-maggi.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "instant",
+   "indian",
+   "maggi"
+  ],
+  "description": "Maggi 2-Minute Masala Noodles, 70 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Thums Up",
+  "brand": "Thums Up",
+  "category": "grocery",
+  "subCategory": "Beverages",
+  "mrp": 20,
+  "price": 20,
+  "unit": "250 ml",
+  "images": [
+   "/products/thums-up-thums-up.webp",
+   "/products/thums-up-thums-up.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "beverages",
+   "indian",
+   "thums up"
+  ],
+  "description": "Thums Up, 250 ml. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Masala Sev Murmura",
+  "brand": "Balaji Wafers",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "40 g",
+  "images": [
+   "/products/balaji-wafers-balaji-wafers-masala-sev-murmura.webp",
+   "/products/balaji-wafers-balaji-wafers-masala-sev-murmura.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji wafers"
+  ],
+  "description": "Balaji Masala Sev Murmura, 40 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Wafers Punjabi Tadka",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "22 g",
+  "images": [
+   "/products/balaji-balaji-wafers-panjabi-tadka.webp",
+   "/products/balaji-balaji-wafers-panjabi-tadka.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Wafers Punjabi Tadka, 22 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Wheelos Masala",
+  "brand": "Balaji Wafers",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "22 g",
+  "images": [
+   "/products/balaji-wafers-wheelos-masala-flavour.webp",
+   "/products/balaji-wafers-wheelos-masala-flavour.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji wafers"
+  ],
+  "description": "Balaji Wheelos Masala, 22 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Wafers Simply Salted",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "45 g",
+  "images": [
+   "/products/balaji-potato-wafers.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Wafers Simply Salted, 45 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Tata Salt",
+  "brand": "Tata",
+  "category": "grocery",
+  "subCategory": "Staples & masala",
+  "mrp": 28,
+  "price": 28,
+  "unit": "1 kg",
+  "images": [
+   "/products/tata-tata-salt.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "staples",
+   "indian",
+   "tata"
+  ],
+  "description": "Tata Salt, 1 kg. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Bisleri Mineral Water",
+  "brand": "Bisleri",
+  "category": "grocery",
+  "subCategory": "Beverages",
+  "mrp": 20,
+  "price": 20,
+  "unit": "1 L",
+  "images": [
+   "/products/bisleri-bisleri-1ltr-made-in-india.webp",
+   "/products/bisleri-bisleri-1ltr-made-in-india.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "beverages",
+   "indian",
+   "bisleri"
+  ],
+  "description": "Bisleri Mineral Water, 1 L. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Parle Happy Happy Choco-Chip Cookies",
+  "brand": "Parle",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "31.5 g",
+  "images": [
+   "/products/parle-happy-happy-parl.webp",
+   "/products/parle-happy-happy-parl.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "parle"
+  ],
+  "description": "Parle Happy Happy Choco-Chip Cookies, 31.5 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Cadbury Dairy Milk Chocolate",
+  "brand": "Cadbury",
+  "category": "grocery",
+  "subCategory": "Chocolates & sweets",
+  "mrp": 50,
+  "price": 50,
+  "unit": "52 g",
+  "images": [
+   "/products/cadbury-dairy-milk.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "chocolates",
+   "indian",
+   "cadbury"
+  ],
+  "description": "Cadbury Dairy Milk Chocolate, 52 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Chataka Pataka Tangy Tomato",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "25 g",
+  "images": [
+   "/products/balaji-chataka-pataka-tangy-tomato.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Chataka Pataka Tangy Tomato, 25 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kurkure Masala Munch",
+  "brand": "Kurkure",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "75 g",
+  "images": [
+   "/products/kurkure-kurkure.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "kurkure"
+  ],
+  "description": "Kurkure Masala Munch, 75 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Bru Instant Coffee",
+  "brand": "Bru",
+  "category": "grocery",
+  "subCategory": "Beverages",
+  "mrp": 160,
+  "price": 160,
+  "unit": "50 g",
+  "images": [
+   "/products/bru-bru-instant-coffee.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "beverages",
+   "indian",
+   "bru"
+  ],
+  "description": "Bru Instant Coffee, 50 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Aloo Sev",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "40 g",
+  "images": [
+   "/products/balaji-aloo-sev.webp",
+   "/products/balaji-aloo-sev.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Aloo Sev, 40 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Amul Masti Spiced Buttermilk",
+  "brand": "Amul",
+  "category": "grocery",
+  "subCategory": "Dairy & eggs",
+  "mrp": 15,
+  "price": 15,
+  "unit": "200 ml",
+  "images": [
+   "/products/amul-amul-masti-spiced-buttermilk-200ml.webp",
+   "/products/amul-amul-masti-spiced-buttermilk-200ml.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "dairy",
+   "indian",
+   "amul"
+  ],
+  "description": "Amul Masti Spiced Buttermilk, 200 ml. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kurkure Puffcorn Yummy Cheese",
+  "brand": "Kurkure",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "55 g",
+  "images": [
+   "/products/kurkure-puffcorn.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "kurkure"
+  ],
+  "description": "Kurkure Puffcorn Yummy Cheese, 55 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Ching's Secret Schezwan Chutney",
+  "brand": "Ching'S Secret",
+  "category": "grocery",
+  "subCategory": "Spreads & sauces",
+  "mrp": 95,
+  "price": 95,
+  "unit": "250 g",
+  "images": [
+   "/products/ching-s-secret-schezwan-chutney.webp",
+   "/products/ching-s-secret-schezwan-chutney.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "spreads",
+   "indian",
+   "ching's secret"
+  ],
+  "description": "Ching's Secret Schezwan Chutney, 250 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Nestlé KitKat Mini",
+  "brand": "Kitkat",
+  "category": "grocery",
+  "subCategory": "Chocolates & sweets",
+  "mrp": 10,
+  "price": 10,
+  "unit": "11.9 g",
+  "images": [
+   "/products/kitkat-kitkat-mini-chocolate-coated-wafer.webp",
+   "/products/kitkat-kitkat-mini-chocolate-coated-wafer.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "chocolates",
+   "indian",
+   "kitkat"
+  ],
+  "description": "Nestlé KitKat Mini, 11.9 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Marie Gold",
+  "brand": "Britannia",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 35,
+  "price": 35,
+  "unit": "250 g",
+  "images": [
+   "/products/britannia-marie-gold.webp",
+   "/products/britannia-marie-gold.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia"
+  ],
+  "description": "Britannia Marie Gold, 250 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Maggi Masala-ae-Magic",
+  "brand": "Maggi",
+  "category": "grocery",
+  "subCategory": "Staples & masala",
+  "mrp": 30,
+  "price": 30,
+  "unit": "6 x 6 g",
+  "images": [
+   "/products/maggi-maggi-masala-magic.webp",
+   "/products/maggi-maggi-masala-magic.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "staples",
+   "indian",
+   "maggi"
+  ],
+  "description": "Maggi Masala-ae-Magic, 6 x 6 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Amul Taaza Toned Milk",
+  "brand": "Amul",
+  "category": "grocery",
+  "subCategory": "Dairy & eggs",
+  "mrp": 28,
+  "price": 28,
+  "unit": "500 ml",
+  "images": [
+   "/products/amul-amul-taaza-milky-milk.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "dairy",
+   "indian",
+   "amul"
+  ],
+  "description": "Amul Taaza Toned Milk, 500 ml. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Shing Bhujia",
+  "brand": "Balaji Wafers",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "40 g",
+  "images": [
+   "/products/balaji-wafers-shing-bhujiya-nimbu-chatka.webp",
+   "/products/balaji-wafers-shing-bhujiya-nimbu-chatka.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji wafers"
+  ],
+  "description": "Balaji Shing Bhujia, 40 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Patanjali Doodh Biscuit",
+  "brand": "Patanjali",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "75 g",
+  "images": [
+   "/products/patanjali-doodh-biscuits.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "patanjali"
+  ],
+  "description": "Patanjali Doodh Biscuit, 75 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Crunchem Simply Salted",
+  "brand": "Balaji Wafers",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "30 g",
+  "images": [
+   "/products/balaji-wafers-simply-salted.webp",
+   "/products/balaji-wafers-simply-salted.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji wafers"
+  ],
+  "description": "Balaji Crunchem Simply Salted, 30 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Bingo Tedhe Medhe Masala Tadka",
+  "brand": "Bingo",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "26 g",
+  "images": [
+   "/products/bingo-bingo-tedhe-medhe.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "bingo"
+  ],
+  "description": "Bingo Tedhe Medhe Masala Tadka, 26 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Parle 20-20 Cashew Cookies",
+  "brand": "Parle",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "45 g",
+  "images": [
+   "/products/parle-20-20.webp",
+   "/products/parle-20-20.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "parle"
+  ],
+  "description": "Parle 20-20 Cashew Cookies, 45 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Lay's India's Magic Masala",
+  "brand": "Lay'S",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "52 g",
+  "images": [
+   "/products/lay-s-lay-s-potato-chips.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "lay's"
+  ],
+  "description": "Lay's India's Magic Masala, 52 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Haldiram's Aloo Bhujia",
+  "brand": "Haldiram'S",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 55,
+  "price": 55,
+  "unit": "200 g",
+  "images": [
+   "/products/haldiram-s-aloo-bhujia-sev.webp",
+   "/products/haldiram-s-aloo-bhujia-sev.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "haldiram's"
+  ],
+  "description": "Haldiram's Aloo Bhujia, 200 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Haldiram's Soya Sticks",
+  "brand": "Haldirams",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "32 g",
+  "images": [
+   "/products/haldirams-haldiram-s-soya-sticks.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "haldiram's"
+  ],
+  "description": "Haldiram's Soya Sticks, 32 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kellogg's Chocos",
+  "brand": "Kellogg'S",
+  "category": "grocery",
+  "subCategory": "Breakfast & cereals",
+  "mrp": 165,
+  "price": 165,
+  "unit": "250 g",
+  "images": [
+   "/products/kellogg-s-chocos.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "breakfast",
+   "indian",
+   "kellogg's"
+  ],
+  "description": "Kellogg's Chocos, 250 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Parle Hide & Seek Chocolate Chip Cookies",
+  "brand": "Parle",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 30,
+  "price": 30,
+  "unit": "100 g",
+  "images": [
+   "/products/parle-hide-seek.webp",
+   "/products/parle-hide-seek.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "parle"
+  ],
+  "description": "Parle Hide & Seek Chocolate Chip Cookies, 100 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Haldiram's Moong Dal",
+  "brand": "Haldiram",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "30 g",
+  "images": [
+   "/products/haldiram-haldiram-moong-dal.webp",
+   "/products/haldiram-haldiram-moong-dal.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "haldiram"
+  ],
+  "description": "Haldiram's Moong Dal, 30 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Amul Pasteurised Butter",
+  "brand": "Amul",
+  "category": "grocery",
+  "subCategory": "Dairy & eggs",
+  "mrp": 285,
+  "price": 285,
+  "unit": "500 g",
+  "images": [
+   "/products/amul-amul-butter.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "dairy",
+   "indian",
+   "amul"
+  ],
+  "description": "Amul Pasteurised Butter, 500 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Lay's Classic Salted",
+  "brand": "Lay'S",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "52 g",
+  "images": [
+   "/products/lay-s-lays-classics-salted-20rs.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "lay's"
+  ],
+  "description": "Lay's Classic Salted, 52 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kissan Fresh Tomato Ketchup",
+  "brand": "Balaji Wafers",
+  "category": "grocery",
+  "subCategory": "Spreads & sauces",
+  "mrp": 125,
+  "price": 125,
+  "unit": "950 g",
+  "images": [
+   "/products/balaji-wafers-scoopitos-masala-flavour.webp",
+   "/products/balaji-wafers-scoopitos-masala-flavour.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "spreads",
+   "indian",
+   "balaji wafers"
+  ],
+  "description": "Kissan Fresh Tomato Ketchup, 950 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Wafers Scoopitos Masala",
+  "brand": "Kissan",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "40 g",
+  "images": [
+   "/products/kissan-fresh-tomato-ketchup.webp",
+   "/products/kissan-fresh-tomato-ketchup.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "kissan"
+  ],
+  "description": "Balaji Wafers Scoopitos Masala, 40 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kellogg's Muesli Fruit & Nut",
+  "brand": "Kellogg'S",
+  "category": "grocery",
+  "subCategory": "Breakfast & cereals",
+  "mrp": 399,
+  "price": 399,
+  "unit": "500 g",
+  "images": [
+   "/products/kellogg-s-muesli-fruit-nut-seeds.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "breakfast",
+   "indian",
+   "kellogg's"
+  ],
+  "description": "Kellogg's Muesli Fruit & Nut, 500 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Haldiram's Phalhari Chivda",
+  "brand": "Haldiram",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 50,
+  "price": 50,
+  "unit": "200 g",
+  "images": [
+   "/products/haldiram-phalhari-chiwda.webp",
+   "/products/haldiram-phalhari-chiwda.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "haldiram"
+  ],
+  "description": "Haldiram's Phalhari Chivda, 200 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Kissan Mixed Fruit Jam",
+  "brand": "Kissan",
+  "category": "grocery",
+  "subCategory": "Spreads & sauces",
+  "mrp": 170,
+  "price": 170,
+  "unit": "500 g",
+  "images": [
+   "/products/kissan-mixed-fruit-jam.webp",
+   "/products/kissan-mixed-fruit-jam.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "spreads",
+   "indian",
+   "kissan"
+  ],
+  "description": "Kissan Mixed Fruit Jam, 500 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Lay's West Indies Hot 'n' Sweet Chilli",
+  "brand": "Lay'S",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 20,
+  "price": 20,
+  "unit": "52 g",
+  "images": [
+   "/products/lay-s-west-indies-hot-n-sweet-chilli-flavor.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "lay's"
+  ],
+  "description": "Lay's West Indies Hot 'n' Sweet Chilli, 52 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Dabur Honey",
+  "brand": "Dabur",
+  "category": "grocery",
+  "subCategory": "Spreads & sauces",
+  "mrp": 135,
+  "price": 135,
+  "unit": "250 g",
+  "images": [
+   "/products/dabur-honey.webp",
+   "/products/dabur-honey.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "spreads",
+   "indian",
+   "dabur"
+  ],
+  "description": "Dabur Honey, 250 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Frooti Mango Drink",
+  "brand": "Frooti",
+  "category": "grocery",
+  "subCategory": "Beverages",
+  "mrp": 10,
+  "price": 10,
+  "unit": "125 ml",
+  "images": [
+   "/products/frooti-frooti-125ml.webp",
+   "/products/frooti-frooti-125ml.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "beverages",
+   "indian",
+   "frooti"
+  ],
+  "description": "Frooti Mango Drink, 125 ml. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Bailley Packaged Drinking Water",
+  "brand": "Bailey",
+  "category": "grocery",
+  "subCategory": "Beverages",
+  "mrp": 20,
+  "price": 20,
+  "unit": "1 L",
+  "images": [
+   "/products/bailey-packaged-drinking-water.webp",
+   "/products/bailey-packaged-drinking-water.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "beverages",
+   "indian",
+   "bailey"
+  ],
+  "description": "Bailley Packaged Drinking Water, 1 L. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Wafers Cream & Onion",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "35 g",
+  "images": [
+   "/products/balaji-balaji-cream-onion.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Wafers Cream & Onion, 35 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Saffola Masala Oats",
+  "brand": "Saffola",
+  "category": "grocery",
+  "subCategory": "Breakfast & cereals",
+  "mrp": 15,
+  "price": 15,
+  "unit": "38 g",
+  "images": [
+   "/products/saffola-saffola-masala-oats-classic-masala.webp",
+   "/products/saffola-saffola-masala-oats-classic-masala.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "breakfast",
+   "indian",
+   "saffola"
+  ],
+  "description": "Saffola Masala Oats, 38 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Balaji Crunchem Masala Masti",
+  "brand": "Balaji",
+  "category": "grocery",
+  "subCategory": "Snacks & namkeen",
+  "mrp": 10,
+  "price": 10,
+  "unit": "30 g",
+  "images": [
+   "/products/balaji-masala-masti.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "snacks",
+   "indian",
+   "balaji"
+  ],
+  "description": "Balaji Crunchem Masala Masti, 30 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Vita Marie Gold",
+  "brand": "Britannia Industries Ltd.",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 30,
+  "price": 30,
+  "unit": "150 g",
+  "images": [
+   "/products/britannia-industries-ltd-britannia-vita-marie-gold-biscuits.webp",
+   "/products/britannia-industries-ltd-britannia-vita-marie-gold-biscuits.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia industries ltd."
+  ],
+  "description": "Britannia Vita Marie Gold, 150 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Little Hearts",
+  "brand": "Britannia",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 10,
+  "price": 10,
+  "unit": "34 g",
+  "images": [
+   "/products/britannia-8901063019201.webp",
+   "/products/britannia-8901063019201.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia"
+  ],
+  "description": "Britannia Little Hearts, 34 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Amul Chocominis",
+  "brand": "Amul",
+  "category": "grocery",
+  "subCategory": "Chocolates & sweets",
+  "mrp": 160,
+  "price": 160,
+  "unit": "250 g",
+  "images": [
+   "/products/amul-chocominis.webp",
+   "/products/amul-chocominis.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "chocolates",
+   "indian",
+   "amul"
+  ],
+  "description": "Amul Chocominis, 250 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ },
+ {
+  "name": "Britannia Jim Jam",
+  "brand": "Britannia",
+  "category": "grocery",
+  "subCategory": "Biscuits & cookies",
+  "mrp": 40,
+  "price": 40,
+  "unit": "138 g",
+  "images": [
+   "/products/britannia-jimjam.webp",
+   "/products/britannia-jimjam.jpg"
+  ],
+  "store": "kiranacorner",
+  "tags": [
+   "biscuits",
+   "indian",
+   "britannia"
+  ],
+  "description": "Britannia Jim Jam, 138 g. A favourite in Indian homes, delivered from your neighbourhood kirana with the printed MRP, never more."
+ }
+]

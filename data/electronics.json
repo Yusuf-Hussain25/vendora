@@ -1,0 +1,494 @@
+[
+ {
+  "name": "iPhone 17 Pro Max",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 149900,
+  "price": 149900,
+  "images": [
+   "/products/iphone-17-pro-max-1.webp",
+   "/products/iphone-17-pro-max-2.webp",
+   "/products/iphone-17-pro-max-3.webp",
+   "/products/iphone-17-pro-max-1.jpg",
+   "/products/iphone-17-pro-max-2.jpg",
+   "/products/iphone-17-pro-max-3.jpg"
+  ],
+  "description": "Apple's largest iPhone with the A19 Pro chip, a 6.9-inch Super Retina XDR display with ProMotion, the 48MP Pro Fusion camera system with 8x optical-quality zoom, and an aluminium unibody built for all-day battery life. 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPhone 17 Pro",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 134900,
+  "price": 134900,
+  "images": [
+   "/products/iphone-17-pro-1.webp",
+   "/products/iphone-17-pro-1.jpg"
+  ],
+  "description": "A19 Pro, a 6.3-inch ProMotion display, the 48MP Pro Fusion camera system and a vapour-chamber cooled aluminium design. 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPhone Air",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 119900,
+  "price": 119900,
+  "images": [
+   "/products/iphone-air-1.webp",
+   "/products/iphone-air-2.webp",
+   "/products/iphone-air-3.webp",
+   "/products/iphone-air-1.jpg",
+   "/products/iphone-air-2.jpg",
+   "/products/iphone-air-3.jpg"
+  ],
+  "description": "The thinnest iPhone yet: a 6.5-inch ProMotion display, A19 Pro, a titanium frame and Ceramic Shield on both sides. 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPhone 17",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 82900,
+  "price": 82900,
+  "images": [
+   "/products/iphone-17-1.webp",
+   "/products/iphone-17-2.webp",
+   "/products/iphone-17-3.webp",
+   "/products/iphone-17-4.webp",
+   "/products/iphone-17-1.jpg",
+   "/products/iphone-17-2.jpg"
+  ],
+  "description": "A 6.3-inch ProMotion display now on the standard iPhone, the A19 chip, a 48MP Dual Fusion camera and the new Centre Stage front camera. 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPhone 16e",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 59900,
+  "price": 57490,
+  "images": [
+   "/products/iphone-16e-2.webp",
+   "/products/iphone-16e-1.jpg",
+   "/products/iphone-16e-2.jpg"
+  ],
+  "description": "The most affordable way into the latest iPhone: A18 chip, Apple Intelligence, a 48MP Fusion camera and a 6.1-inch OLED display. 128 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "MacBook Pro 14-inch (M5)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Laptops",
+  "mrp": 169900,
+  "price": 169900,
+  "images": [
+   "/products/macbook-pro-14-inch-m5-1.webp",
+   "/products/macbook-pro-14-inch-m5-1.jpg"
+  ],
+  "description": "The M5 chip with next-generation GPU, a Liquid Retina XDR display, up to 24 hours of battery life and a full set of ports, in Space Black. 16 GB / 512 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "laptops",
+   "new launch"
+  ]
+ },
+ {
+  "name": "MacBook Pro 16-inch (M4 Pro)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Laptops",
+  "mrp": 249900,
+  "price": 244900,
+  "images": [
+   "/products/macbook-pro-16-inch-m4-pro-1.webp",
+   "/products/macbook-pro-16-inch-m4-pro-1.jpg"
+  ],
+  "description": "M4 Pro with a 14-core CPU, a 16.2-inch Liquid Retina XDR display, Thunderbolt 5 and a 12MP Centre Stage camera, in Silver. 24 GB / 512 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "laptops",
+   "new launch"
+  ]
+ },
+ {
+  "name": "MacBook Air 13-inch (M4)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Laptops",
+  "mrp": 99900,
+  "price": 96900,
+  "images": [
+   "/products/macbook-air-13-inch-m4-1.webp",
+   "/products/macbook-air-13-inch-m4-2.webp",
+   "/products/macbook-air-13-inch-m4-1.jpg",
+   "/products/macbook-air-13-inch-m4-2.jpg"
+  ],
+  "description": "The M4 MacBook Air: fanless and silent, up to 18 hours of battery, a 13.6-inch Liquid Retina display and support for two external displays. 16 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "laptops",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iMac 24-inch (M4)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Desktops",
+  "mrp": 134900,
+  "price": 134900,
+  "images": [
+   "/products/imac-24-inch-m4-1.webp",
+   "/products/imac-24-inch-m4-2.webp",
+   "/products/imac-24-inch-m4-1.jpg",
+   "/products/imac-24-inch-m4-2.jpg"
+  ],
+  "description": "A 4.5K Retina display in a design just 11.5 mm thin, the M4 chip, a 12MP Centre Stage camera and colour-matched accessories.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "desktops",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Mac mini (M4)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Desktops",
+  "mrp": 59900,
+  "price": 58900,
+  "images": [
+   "/products/mac-mini-m4-1.webp",
+   "/products/mac-mini-m4-2.webp",
+   "/products/mac-mini-m4-1.jpg",
+   "/products/mac-mini-m4-2.jpg"
+  ],
+  "description": "Small enough to fit in your hand: the M4 chip, front USB-C ports, Thunderbolt 4 and HDMI in a 5-inch square. 16 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "desktops",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPad Pro 11-inch (M4)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Tablets",
+  "mrp": 99900,
+  "price": 99900,
+  "images": [
+   "/products/ipad-pro-11-inch-m4-1.webp",
+   "/products/ipad-pro-11-inch-m4-1.jpg",
+   "/products/ipad-pro-11-inch-m4-2.jpg"
+  ],
+  "description": "The thinnest Apple product ever made, with an Ultra Retina XDR tandem OLED display and the M4 chip. Wi-Fi, 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "tablets",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPad Air 11-inch (M3)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Tablets",
+  "mrp": 59900,
+  "price": 57900,
+  "images": [
+   "/products/ipad-air-11-inch-m3-1.webp",
+   "/products/ipad-air-11-inch-m3-1.jpg",
+   "/products/ipad-air-11-inch-m3-2.jpg"
+  ],
+  "description": "M3 power in a thin, light design with a Liquid Retina display, Apple Pencil Pro support and Touch ID. Wi-Fi, 128 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "tablets",
+   "new launch"
+  ]
+ },
+ {
+  "name": "iPad mini (A17 Pro)",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Tablets",
+  "mrp": 49900,
+  "price": 47900,
+  "images": [
+   "/products/ipad-mini-a17-pro-1.webp",
+   "/products/ipad-mini-a17-pro-2.webp",
+   "/products/ipad-mini-a17-pro-1.jpg",
+   "/products/ipad-mini-a17-pro-2.jpg"
+  ],
+  "description": "The full iPad experience in an 8.3-inch design, with A17 Pro, Apple Intelligence and Apple Pencil Pro support. Wi-Fi, 128 GB.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "tablets",
+   "new launch"
+  ]
+ },
+ {
+  "name": "AirPods Pro 3",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Audio",
+  "mrp": 25900,
+  "price": 24900,
+  "images": [
+   "/products/airpods-pro-3-1.webp",
+   "/products/airpods-pro-3-2.webp",
+   "/products/airpods-pro-3-1.jpg",
+   "/products/airpods-pro-3-2.jpg"
+  ],
+  "description": "Apple's best Active Noise Cancellation, heart-rate sensing during workouts, Live Translation and up to 8 hours of listening.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "audio",
+   "new launch"
+  ]
+ },
+ {
+  "name": "AirPods 4",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Audio",
+  "mrp": 12900,
+  "price": 11900,
+  "images": [
+   "/products/airpods-4-1.webp",
+   "/products/airpods-4-1.jpg"
+  ],
+  "description": "An open-ear design reshaped for comfort, the H2 chip, Personalised Spatial Audio and a USB-C charging case.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "audio",
+   "new launch"
+  ]
+ },
+ {
+  "name": "AirPods Max",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Audio",
+  "mrp": 59900,
+  "price": 56900,
+  "images": [
+   "/products/airpods-max-1.webp",
+   "/products/airpods-max-2.webp",
+   "/products/airpods-max-1.jpg",
+   "/products/airpods-max-2.jpg"
+  ],
+  "description": "Over-ear headphones with high-fidelity audio, Active Noise Cancellation, a breathable knit-mesh canopy and USB-C.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "audio",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Apple Watch Series 10",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Wearables",
+  "mrp": 46900,
+  "price": 44900,
+  "images": [
+   "/products/apple-watch-series-10-1.webp",
+   "/products/apple-watch-series-10-2.webp",
+   "/products/apple-watch-series-10-1.jpg",
+   "/products/apple-watch-series-10-2.jpg"
+  ],
+  "description": "The thinnest Apple Watch with the biggest display yet, sleep apnoea notifications, depth and water temperature sensing. 42 mm GPS.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "wearables",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Apple Watch Ultra 2",
+  "brand": "Apple",
+  "category": "electronics",
+  "subCategory": "Wearables",
+  "mrp": 89900,
+  "price": 89900,
+  "images": [
+   "/products/apple-watch-ultra-2-1.webp",
+   "/products/apple-watch-ultra-2-2.webp",
+   "/products/apple-watch-ultra-2-1.jpg",
+   "/products/apple-watch-ultra-2-2.jpg"
+  ],
+  "description": "A 49 mm titanium case, the brightest Apple display, precision dual-frequency GPS and up to 36 hours of battery for adventure and endurance.",
+  "store": "voltline",
+  "tags": [
+   "apple",
+   "wearables",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Samsung Galaxy S25 Ultra",
+  "brand": "Samsung",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 129999,
+  "price": 124999,
+  "images": [
+   "/products/samsung-galaxy-s25-ultra-1.webp",
+   "/products/samsung-galaxy-s25-ultra-2.webp",
+   "/products/samsung-galaxy-s25-ultra-1.jpg",
+   "/products/samsung-galaxy-s25-ultra-2.jpg"
+  ],
+  "description": "A titanium frame, built-in S Pen, a 200MP camera and Galaxy AI on the Snapdragon 8 Elite for Galaxy. 12 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "samsung",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Samsung Galaxy Z Fold7",
+  "brand": "Samsung",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 174999,
+  "price": 174999,
+  "images": [
+   "/products/samsung-galaxy-z-fold7-1.webp",
+   "/products/samsung-galaxy-z-fold7-2.webp",
+   "/products/samsung-galaxy-z-fold7-1.jpg",
+   "/products/samsung-galaxy-z-fold7-2.jpg"
+  ],
+  "description": "Samsung's thinnest, lightest Fold: an 8-inch main screen, a 200MP camera and Galaxy AI in a 215 g body. 12 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "samsung",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Samsung Galaxy Z Flip7",
+  "brand": "Samsung",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 109999,
+  "price": 106999,
+  "images": [
+   "/products/samsung-galaxy-z-flip7-2.webp",
+   "/products/samsung-galaxy-z-flip7-1.jpg",
+   "/products/samsung-galaxy-z-flip7-2.jpg"
+  ],
+  "description": "An edge-to-edge 4.1-inch FlexWindow cover screen, a 50MP camera and FlexCam selfies in a pocket-sized flip. 12 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "samsung",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "Google Pixel 10 Pro",
+  "brand": "Google",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 109999,
+  "price": 109999,
+  "images": [
+   "/products/google-pixel-10-pro-1.jpg",
+   "/products/google-pixel-10-pro-2.jpg",
+   "/products/google-pixel-10-pro-3.jpg"
+  ],
+  "description": "Google Tensor G5, a 50MP triple camera with 100x Pro Res Zoom, Gemini built in and seven years of updates. 16 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "google",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "OnePlus 13",
+  "brand": "OnePlus",
+  "category": "electronics",
+  "subCategory": "Phones",
+  "mrp": 69999,
+  "price": 64999,
+  "images": [
+   "/products/oneplus-13-1.jpg"
+  ],
+  "description": "Snapdragon 8 Elite, a 4th-generation Hasselblad camera, a 6000 mAh battery with 100W charging and IP69 water resistance. 12 GB / 256 GB.",
+  "store": "voltline",
+  "tags": [
+   "oneplus",
+   "phones",
+   "new launch"
+  ]
+ },
+ {
+  "name": "PlayStation 5 Pro",
+  "brand": "Sony",
+  "category": "electronics",
+  "subCategory": "Gaming",
+  "mrp": 54990,
+  "price": 54990,
+  "images": [
+   "/products/playstation-5-pro-1.webp",
+   "/products/playstation-5-pro-1.jpg"
+  ],
+  "description": "Upgraded GPU, advanced ray tracing and AI-driven upscaling for sharper 4K gameplay, with a 2 TB SSD.",
+  "store": "voltline",
+  "tags": [
+   "sony",
+   "gaming",
+   "new launch"
+  ]
+ }
+]
