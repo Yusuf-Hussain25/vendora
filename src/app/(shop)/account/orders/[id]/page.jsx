@@ -59,7 +59,7 @@ export default async function OrderPage({ params }) {
             <ul className="divide-y divide-border">
               {order.items.map((item) => (
                 <li key={item.id} className="flex items-center gap-4 py-3 first:pt-0 last:pb-0">
-                  <Link href={`/product/${item.productId}`} className="relative w-16 h-16 rounded-[14px] bg-surface-2 shrink-0">
+                  <Link href={`/product/${item.productId}`} className="relative w-16 h-16 rounded-[8px] bg-surface-2 shrink-0">
                     <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain p-1.5" />
                   </Link>
                   <div className="flex-1 min-w-0">

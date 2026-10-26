@@ -141,7 +141,7 @@ export default function StoreForm({ store, mode = "apply", defaults = {} }) {
             <input id="s-city" className="input" value={form.city} onChange={set("city")} required />
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-border bg-surface px-4 py-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[10px] border border-border bg-surface px-4 py-3">
           <p className="text-sm text-text-2">
             {form.lat ? `Pickup pinned at ${Number(form.lat).toFixed(4)}, ${Number(form.lng).toFixed(4)}` : "Pin your pickup point so riders see it on the map."}
           </p>

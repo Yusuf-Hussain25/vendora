@@ -45,10 +45,10 @@ export default function CheckoutView({ addresses: initialAddresses, userName, st
     return (
       <div className="grid lg:grid-cols-[1fr_400px] gap-6">
         <div className="space-y-4">
-          <Skeleton className="h-48 w-full !rounded-[22px]" />
-          <Skeleton className="h-40 w-full !rounded-[22px]" />
+          <Skeleton className="h-48 w-full !rounded-[12px]" />
+          <Skeleton className="h-40 w-full !rounded-[12px]" />
         </div>
-        <Skeleton className="h-96 w-full !rounded-[22px]" />
+        <Skeleton className="h-96 w-full !rounded-[12px]" />
       </div>
     );
   }
@@ -118,7 +118,7 @@ export default function CheckoutView({ addresses: initialAddresses, userName, st
                   role="radio"
                   aria-checked={addressId === a.id}
                   onClick={() => setAddressId(a.id)}
-                  className={`text-left rounded-[18px] border p-4 transition ${
+                  className={`text-left rounded-[10px] border p-4 transition ${
                     addressId === a.id ? "border-accent bg-accent-soft ring-2 ring-accent-soft" : "border-border bg-surface hover:border-border-strong"
                   }`}
                 >
@@ -139,7 +139,7 @@ export default function CheckoutView({ addresses: initialAddresses, userName, st
               ))}
             </div>
           ) : (
-            <button onClick={() => setAdding(true)} className="w-full rounded-[18px] border border-dashed border-border-strong p-6 text-sm text-text-2 hover:text-text hover:border-accent transition">
+            <button onClick={() => setAdding(true)} className="w-full rounded-[10px] border border-dashed border-border-strong p-6 text-sm text-text-2 hover:text-text hover:border-accent transition">
               <Plus className="w-5 h-5 mx-auto mb-2" />
               Add your delivery address
             </button>
@@ -158,7 +158,7 @@ export default function CheckoutView({ addresses: initialAddresses, userName, st
                 role="radio"
                 aria-checked={payment === value}
                 onClick={() => setPayment(value)}
-                className={`text-left rounded-[18px] border p-4 flex gap-3 transition ${
+                className={`text-left rounded-[10px] border p-4 flex gap-3 transition ${
                   payment === value ? "border-accent bg-accent-soft ring-2 ring-accent-soft" : "border-border bg-surface hover:border-border-strong"
                 }`}
               >

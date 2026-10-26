@@ -49,7 +49,7 @@ export default async function AdminStores({ searchParams }) {
           {stores.map((s) => (
             <article key={s.id} className="card p-5">
               <div className="flex items-start gap-4">
-                <Image src={s.logo} alt="" width={56} height={56} className="w-14 h-14 rounded-[16px] bg-surface-2 object-cover" />
+                <Image src={s.logo} alt="" width={56} height={56} className="w-14 h-14 rounded-[10px] bg-surface-2 object-cover" />
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <h2 className="font-semibold">{s.name}</h2>

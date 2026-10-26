@@ -21,7 +21,7 @@ export default function StoreCard({ store }) {
           alt={`${store.name} logo`}
           width={64}
           height={64}
-          className="w-16 h-16 rounded-[18px] ring-4 ring-bg-elev object-cover bg-surface-2"
+          className="w-16 h-16 rounded-full ring-4 ring-panel object-cover bg-surface-2"
         />
         <h3 className="mt-3 font-semibold flex items-center gap-1.5">
           {store.name}

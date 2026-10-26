@@ -48,7 +48,7 @@ export default function ImageInput({ value, onChange, max = 6, folder = "vendora
       {value.length > 0 && (
         <div className={`grid gap-3 ${single ? "grid-cols-1 max-w-[140px]" : "grid-cols-3 sm:grid-cols-6"}`}>
           {value.map((src, i) => (
-            <div key={src + i} className="relative aspect-square rounded-[16px] bg-surface-2 border border-border group">
+            <div key={src + i} className="relative aspect-square rounded-[10px] bg-surface-2 border border-border group">
               <Image src={src} alt="" fill sizes="140px" className="object-contain p-2" />
               {!single && i === 0 && <span className="absolute bottom-1.5 left-1.5 badge badge-accent !h-5 !text-[10px]">Cover</span>}
               <div className="absolute top-1.5 right-1.5 flex gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition">

@@ -13,7 +13,8 @@ export default async function StoresPage() {
     <div className="container-x pt-8">
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight">Stores on Vendora</h1>
+          <p className="eyebrow">Independent sellers</p>
+          <h1 className="font-display mt-3 text-[44px] sm:text-[56px]">Stores on Vendora</h1>
           <p className="mt-1.5 text-text-2">{stores.length} independent sellers, each reviewed before going live.</p>
         </div>
         <Link href="/sell" className="btn btn-secondary">

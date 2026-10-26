@@ -47,7 +47,7 @@ export default function CouponManager({ coupons }) {
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {coupons.map((c) => (
             <article key={c.code} className={`card p-5 relative overflow-hidden ${c.expired ? "opacity-60" : ""}`}>
-              <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-[image:var(--accent-grad)] opacity-15" aria-hidden="true" />
+              <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-accent opacity-15" aria-hidden="true" />
               <div className="relative flex items-start justify-between gap-3">
                 <div>
                   <p className="font-mono text-lg font-semibold tracking-wide">{c.code}</p>

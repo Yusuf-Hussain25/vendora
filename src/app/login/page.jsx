@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { Bike, ShieldCheck, Sparkles, Store, Timer } from "lucide-react";
+import { Bike, ShieldCheck, Sparkles, Store } from "lucide-react";
 import { getCurrentUser } from "@/lib/session";
 import { googleEnabled } from "@/lib/auth";
-import { getLiveDeals } from "@/lib/queries";
-import { effectivePrice } from "@/lib/pricing";
-import { money } from "@/lib/format";
-import Logo from "@/components/ui/Logo";
+import Link from "next/link";
+import Logo, { LogoMark } from "@/components/ui/Logo";
+import workspace from "../../../public/images/editorial/workspace.jpg";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import AuthCard from "@/components/auth/AuthCard";
 
@@ -19,7 +18,6 @@ export default async function LoginPage({ searchParams }) {
   const { next, mode } = await searchParams;
   if (await getCurrentUser()) redirect(safeNext(next));
 
-  const deals = (await getLiveDeals(12)).filter((d) => ["fashion", "electronics", "accessories", "beauty"].includes(d.category)).slice(0, 3);
 
   const demos = [
     { role: "Shopper & seller", email: process.env.NEXT_PUBLIC_DEMO_EMAIL },
@@ -28,53 +26,42 @@ export default async function LoginPage({ searchParams }) {
   ].filter((d) => d.email && process.env.NEXT_PUBLIC_DEMO_PASSWORD);
 
   return (
-    <main className="min-h-dvh grid lg:grid-cols-[1.1fr_1fr]">
-      {/* Brand hero */}
-      <section className="relative hidden lg:flex flex-col justify-between p-12 xl:p-16 overflow-hidden border-r border-border">
-        <div className="absolute -left-40 -top-40 w-[560px] h-[560px] rounded-full bg-[image:var(--accent-grad)] opacity-[.18] blur-3xl" aria-hidden="true" />
-        <Logo className="relative" />
-        <div className="relative max-w-xl">
-          <h1 className="text-5xl xl:text-6xl font-semibold tracking-[-0.035em] leading-[1.05]">
-            Every store you love, <span className="text-gradient">one checkout.</span>
+    <main className="min-h-dvh grid lg:grid-cols-[1.1fr_1fr] bg-bg">
+      {/* Brand hero: one art-directed photograph with the promise set in serif */}
+      <section className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-forest text-ivory">
+        <Image src={workspace} alt="" fill priority placeholder="blur" sizes="55vw" className="object-cover opacity-55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/60 to-forest/20" aria-hidden="true" />
+        <div className="relative p-12 xl:p-16">
+          <Link href="/" className="inline-flex items-center gap-2 text-ivory" aria-label="Vendora home">
+            <LogoMark size={30} className="!text-ivory" />
+            <span className="font-display text-[27px] leading-none">Vendora</span>
+          </Link>
+        </div>
+        <div className="relative p-12 xl:p-16 max-w-2xl">
+          <p className="text-[11.5px] uppercase tracking-[.18em] text-ivory/70">Local stores · One cart · Fast delivery</p>
+          <h1 className="font-display mt-5 text-[56px] xl:text-[68px] leading-[1.02]">
+            Every store you love, <em className="italic text-[#cfe3d6]">one checkout.</em>
           </h1>
-          <p className="mt-5 text-lg text-text-2 leading-relaxed">
+          <p className="mt-5 text-[17px] text-ivory/80 leading-relaxed max-w-lg">
             Shop independent sellers, catch flash deals before the timer runs out, and follow your rider live to your door.
           </p>
-
-          {deals.length > 0 && (
-            <div className="mt-10 grid grid-cols-3 gap-3">
-              {deals.map((d) => (
-                <div key={d.id} className="card !rounded-[20px] p-2.5">
-                  <div className="relative aspect-square rounded-[14px] bg-surface-2">
-                    <Image src={d.images[0]} alt={d.name} fill sizes="160px" className="object-contain p-3" />
-                    <span className="absolute top-2 left-2 badge badge-deal !h-5 !text-[10px]">
-                      <Timer />
-                      Deal
-                    </span>
-                  </div>
-                  <p className="mt-2 px-1 text-xs font-medium truncate">{d.name}</p>
-                  <p className="px-1 text-sm font-semibold text-deal">{money(effectivePrice(d))}</p>
+          <ul className="mt-10 grid grid-cols-2 gap-x-8 gap-y-5 border-t border-ivory/20 pt-8">
+            {[
+              [Store, "Independent sellers", "Every store is reviewed"],
+              [Bike, "Live delivery map", "Follow your rider in real time"],
+              [ShieldCheck, "Code at the door", "Only you can confirm delivery"],
+              [Sparkles, "AI listing help", "Sellers list in minutes"],
+            ].map(([Icon, title, text]) => (
+              <li key={title} className="flex items-start gap-3">
+                <Icon className="w-5 h-5 shrink-0 mt-0.5 text-[#cfe3d6]" strokeWidth={1.6} />
+                <div>
+                  <p className="text-sm font-medium">{title}</p>
+                  <p className="text-xs text-ivory/65 mt-0.5">{text}</p>
                 </div>
-              ))}
-            </div>
-          )}
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="relative grid grid-cols-2 gap-3 max-w-xl">
-          {[
-            [Store, "Independent sellers", "Every store is reviewed"],
-            [Bike, "Live delivery map", "Track riders in real time"],
-            [ShieldCheck, "Code at the door", "Only you can confirm it"],
-            [Sparkles, "AI listing help", "Sellers list in minutes"],
-          ].map(([Icon, title, text]) => (
-            <li key={title} className="flex items-start gap-3 rounded-[18px] border border-border bg-surface p-4">
-              <Icon className="w-5 h-5 text-accent-text shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm font-semibold">{title}</p>
-                <p className="text-xs text-text-3 mt-0.5">{text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* Auth card */}

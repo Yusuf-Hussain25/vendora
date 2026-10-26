@@ -70,7 +70,7 @@ export default async function SellPage() {
     panel = (
       <>
         {store?.status === "REJECTED" && (
-          <div className="mb-6 flex items-start gap-3 rounded-[18px] p-4 bg-[rgba(244,63,94,.08)] border border-[rgba(244,63,94,.25)]">
+          <div className="mb-6 flex items-start gap-3 rounded-[10px] p-4 bg-sale-soft border border-sale/30">
             <XCircle className="w-5 h-5 text-danger shrink-0 mt-0.5" />
             <p className="text-sm">Your last application wasn&apos;t approved. Update the details below and send it again.</p>
           </div>
@@ -84,7 +84,7 @@ export default async function SellPage() {
     <div className="container-x pt-10">
       <section className="max-w-3xl">
         <p className="eyebrow">Sell on Vendora</p>
-        <h1 className="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight">Your store, our shoppers and riders</h1>
+        <h1 className="font-display mt-4 text-[44px] sm:text-[60px]">Your store, our shoppers <em className="text-emphasis">and riders.</em></h1>
         <p className="mt-4 text-lg text-text-2 leading-relaxed">
           Open a storefront in minutes. We bring the customers, checkout and same-day delivery; you bring the products.
         </p>
@@ -92,7 +92,7 @@ export default async function SellPage() {
       <ul className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {perks.map(([Icon, title, text]) => (
           <li key={title} className="card p-5">
-            <span className="grid place-items-center w-10 h-10 rounded-[14px] bg-accent-soft text-accent-text">
+            <span className="grid place-items-center w-10 h-10 rounded-[8px] bg-accent-soft text-accent-text">
               <Icon className="w-5 h-5" />
             </span>
             <h2 className="mt-4 font-semibold">{title}</h2>

@@ -69,7 +69,7 @@ export default async function AdminOverview() {
                     <span className="font-medium">{count}</span>
                   </div>
                   <div className="h-2 rounded-full bg-surface-2 overflow-hidden">
-                    <div className="h-full rounded-full bg-[image:var(--accent-grad)]" style={{ width: `${totalOrders ? (count / totalOrders) * 100 : 0}%` }} />
+                    <div className="h-full rounded-full bg-accent" style={{ width: `${totalOrders ? (count / totalOrders) * 100 : 0}%` }} />
                   </div>
                 </li>
               );

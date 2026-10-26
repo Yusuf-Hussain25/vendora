@@ -7,7 +7,7 @@ export default function NotFound() {
     <main className="min-h-dvh grid place-items-center px-4">
       <div className="text-center max-w-md">
         <Logo className="justify-center" />
-        <span className="mt-10 mx-auto grid place-items-center w-16 h-16 rounded-[22px] bg-accent-soft text-accent-text">
+        <span className="mt-10 mx-auto grid place-items-center w-16 h-16 rounded-[12px] bg-accent-soft text-accent-text">
           <Compass className="w-7 h-7" />
         </span>
         <h1 className="mt-6 text-3xl font-semibold tracking-tight">We couldn&apos;t find that page</h1>

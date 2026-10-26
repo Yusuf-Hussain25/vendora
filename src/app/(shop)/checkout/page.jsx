@@ -15,7 +15,7 @@ export default async function CheckoutPage({ searchParams }) {
 
   return (
     <div className="container-x pt-8">
-      <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight mb-8">Checkout</h1>
+      <h1 className="font-display text-[44px] sm:text-[52px] mb-8">Checkout</h1>
       <CheckoutView addresses={addresses} userName={user.name} stripeEnabled={stripeEnabled} couponCode={coupon || null} />
     </div>
   );

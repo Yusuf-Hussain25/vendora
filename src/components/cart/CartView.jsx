@@ -46,10 +46,10 @@ export default function CartView() {
       <div className="grid lg:grid-cols-[1fr_380px] gap-6">
         <div className="space-y-4">
           {[0, 1].map((i) => (
-            <Skeleton key={i} className="h-56 w-full !rounded-[22px]" />
+            <Skeleton key={i} className="h-56 w-full !rounded-[12px]" />
           ))}
         </div>
-        <Skeleton className="h-80 w-full !rounded-[22px]" />
+        <Skeleton className="h-80 w-full !rounded-[12px]" />
       </div>
     );
   }
@@ -80,7 +80,7 @@ export default function CartView() {
     <div className="grid lg:grid-cols-[1fr_380px] gap-6 items-start">
       <div className="space-y-4">
         {unavailable.length > 0 && (
-          <div className="flex flex-wrap items-center gap-3 rounded-[16px] px-4 py-3 bg-[rgba(245,158,11,.1)] border border-[rgba(245,158,11,.3)] text-sm">
+          <div className="flex flex-wrap items-center gap-3 rounded-[10px] px-4 py-3 bg-warning/10 border border-warning/30 text-sm">
             <AlertTriangle className="w-4 h-4 text-warning shrink-0" />
             <span className="flex-1">
               {unavailable.length === 1 ? "One item is" : `${unavailable.length} items are`} no longer available and won&apos;t be ordered.
@@ -107,7 +107,7 @@ export default function CartView() {
               <ul className="divide-y divide-border">
                 {group.items.map((item) => (
                   <li key={item.key} className={`flex gap-4 p-4 sm:p-5 ${item.available ? "" : "opacity-55"}`}>
-                    <Link href={`/product/${item.product.id}`} className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-[16px] bg-surface-2">
+                    <Link href={`/product/${item.product.id}`} className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-[10px] bg-surface-2">
                       <Image src={item.product.images[0]} alt={item.product.name} fill sizes="96px" className="object-contain p-2" />
                     </Link>
                     <div className="flex-1 min-w-0 flex flex-col">

@@ -66,7 +66,7 @@ export default function AddressBook({ addresses, userName }) {
           ))}
           <button
             onClick={() => setEditing("new")}
-            className="rounded-[22px] border border-dashed border-border-strong p-5 min-h-[200px] grid place-items-center text-sm text-text-2 hover:text-text hover:border-accent transition"
+            className="rounded-[12px] border border-dashed border-border-strong p-5 min-h-[200px] grid place-items-center text-sm text-text-2 hover:text-text hover:border-accent transition"
           >
             <span className="flex flex-col items-center gap-2">
               <Plus className="w-5 h-5" />

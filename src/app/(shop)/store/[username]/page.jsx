@@ -36,16 +36,16 @@ export default async function StorePage({ params, searchParams }) {
 
   return (
     <div className="container-x pt-6">
-      <section className="card !rounded-[32px] overflow-hidden">
+      <section className="card !rounded-[14px] overflow-hidden">
         <div className="relative h-40 sm:h-56 bg-surface-2">
           {store.banner && <Image src={store.banner} alt="" fill priority sizes="100vw" className="object-cover" />}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         </div>
         <div className="px-5 sm:px-8 pb-6 sm:pb-8 -mt-12 relative">
-          <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6">
-            <Image src={store.logo} alt={`${store.name} logo`} width={104} height={104} className="w-24 h-24 sm:w-[104px] sm:h-[104px] rounded-[28px] ring-4 ring-bg-elev object-cover bg-surface-2" />
+          <div className="flex flex-col gap-4">
+            <Image src={store.logo} alt={`${store.name} logo`} width={104} height={104} className="w-24 h-24 sm:w-[104px] sm:h-[104px] rounded-full ring-4 ring-panel object-cover bg-surface-2" />
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight flex items-center gap-2">
+              <h1 className="font-display text-[38px] sm:text-[46px] flex items-center gap-2">
                 {store.name}
                 <BadgeCheck className="w-6 h-6 text-accent-text shrink-0" aria-label="Verified store" />
               </h1>

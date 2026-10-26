@@ -65,7 +65,7 @@ export default async function ProductPage({ params }) {
             {product.store.name}
             <BadgeCheck className="w-4 h-4" />
           </Link>
-          <h1 className="mt-2 text-3xl sm:text-[40px] leading-tight font-semibold tracking-tight">{product.name}</h1>
+          <h1 className="font-display mt-3 text-[40px] sm:text-[52px]">{product.name}</h1>
           <div className="mt-3 flex items-center gap-3 text-sm">
             {product.ratingCount > 0 ? (
               <a href="#reviews" className="inline-flex items-center gap-2 hover:underline">
@@ -83,8 +83,8 @@ export default async function ProductPage({ params }) {
             <BuyBox product={buyable} />
           </div>
 
-          <Link href={`/store/${product.store.username}`} className="mt-6 card !rounded-[20px] p-4 flex items-center gap-4 hover:border-border-strong transition">
-            <Image src={product.store.logo} alt="" width={52} height={52} className="w-[52px] h-[52px] rounded-[16px] object-cover bg-surface-2" />
+          <Link href={`/store/${product.store.username}`} className="mt-6 card !rounded-[12px] p-4 flex items-center gap-4 hover:border-border-strong transition">
+            <Image src={product.store.logo} alt="" width={52} height={52} className="w-[52px] h-[52px] rounded-[10px] object-cover bg-surface-2" />
             <div className="min-w-0 flex-1">
               <p className="font-semibold flex items-center gap-1.5">
                 {product.store.name}

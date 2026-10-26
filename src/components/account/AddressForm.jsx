@@ -77,7 +77,7 @@ export default function AddressForm({ address, defaultName = "", onSaved, onCanc
         {field("country", "Country", { defaultValue: "United States", input: { autoComplete: "country-name" } })}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-border bg-surface px-4 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[10px] border border-border bg-surface px-4 py-3">
         <div className="text-sm">
           <p className="font-medium">{coords ? "Location pinned" : "Pin your location"}</p>
           <p className="text-xs text-text-3">{coords ? `${coords.lat.toFixed(4)}, ${coords.lng.toFixed(4)}` : "Helps your rider find the door on the live map."}</p>

@@ -204,7 +204,7 @@ export default function ActiveDelivery({ order }) {
                   </>
                 )}
               </div>
-              <form onSubmit={deliver} className="rounded-[18px] border border-border bg-surface p-4">
+              <form onSubmit={deliver} className="rounded-[10px] border border-border bg-surface p-4">
                 <label className="label" htmlFor={`otp-${order.id}`}>
                   Delivery code from the customer
                 </label>

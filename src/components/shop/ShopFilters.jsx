@@ -195,8 +195,8 @@ export function ShopToolbar({ total, subCategories, hideCategory }) {
 
       {open && (
         <div className="fixed inset-0 z-[90] lg:hidden">
-          <button className="absolute inset-0 bg-black/55 backdrop-blur-sm" aria-label="Close filters" onClick={() => setOpen(false)} />
-          <div className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-t-[28px] bg-panel-solid border-t border-border p-6 fade-up">
+          <button className="absolute inset-0 bg-black/40" aria-label="Close filters" onClick={() => setOpen(false)} />
+          <div className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-t-[14px] bg-panel-solid border-t border-border p-6 fade-up">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-semibold">Filters</h2>
               <button className="btn btn-ghost btn-icon btn-sm" onClick={() => setOpen(false)} aria-label="Close filters">

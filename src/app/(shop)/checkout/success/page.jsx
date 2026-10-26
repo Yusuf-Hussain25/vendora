@@ -26,7 +26,7 @@ export default async function CheckoutSuccessPage({ searchParams }) {
 
   return (
     <div className="container-x pt-16 max-w-lg text-center">
-      <span className={`mx-auto grid place-items-center w-16 h-16 rounded-[22px] ${paid ? "bg-accent-soft text-accent-text" : "bg-[rgba(245,158,11,.14)] text-warning"}`}>
+      <span className={`mx-auto grid place-items-center w-16 h-16 rounded-[12px] ${paid ? "bg-accent-soft text-accent-text" : "bg-warning/10 text-warning"}`}>
         {paid ? <CheckCircle2 className="w-8 h-8" /> : <CircleAlert className="w-8 h-8" />}
       </span>
       <h1 className="mt-6 text-3xl font-semibold tracking-tight">{paid ? "Payment received" : "We're confirming your payment"}</h1>

@@ -5,7 +5,7 @@ export default function Loading() {
     <div className="container-x pt-6">
       <Skeleton className="h-4 w-56 mb-6" />
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-14">
-        <Skeleton className="aspect-square w-full !rounded-[28px]" />
+        <Skeleton className="aspect-square w-full !rounded-[14px]" />
         <div className="space-y-4 pt-2">
           <Skeleton className="h-4 w-32" />
           <Skeleton className="h-10 w-4/5" />
@@ -16,7 +16,7 @@ export default function Loading() {
             <Skeleton className="h-[50px] flex-1 !rounded-full" />
             <Skeleton className="h-[50px] flex-1 !rounded-full" />
           </div>
-          <Skeleton className="h-24 w-full !rounded-[20px]" />
+          <Skeleton className="h-24 w-full !rounded-[12px]" />
         </div>
       </div>
     </div>

@@ -46,7 +46,7 @@ export default async function OrdersPage({ searchParams }) {
       <Link href={`/account/orders/${o.id}`} className="card p-4 sm:p-5 flex items-center gap-4 hover:border-border-strong transition group">
         <div className="flex -space-x-3 shrink-0">
           {o.items.slice(0, 3).map((item, i) => (
-            <span key={i} className="relative w-14 h-14 rounded-[14px] bg-surface-2 ring-2 ring-bg-elev overflow-hidden">
+            <span key={i} className="relative w-14 h-14 rounded-[8px] bg-surface-2 ring-2 ring-bg-elev overflow-hidden">
               <Image src={item.image} alt={item.name} fill sizes="56px" className="object-contain p-1.5" />
             </span>
           ))}
@@ -78,7 +78,7 @@ export default async function OrdersPage({ searchParams }) {
   return (
     <div className="space-y-8">
       {justPlaced.length > 0 && (
-        <div className="flex items-center gap-4 rounded-[22px] p-5 bg-accent-soft border border-[rgba(20,184,166,.3)] fade-up">
+        <div className="flex items-center gap-4 rounded-[12px] p-5 bg-accent-soft border border-accent/25 fade-up">
           <PackageCheck className="w-8 h-8 text-accent-text shrink-0" />
           <div>
             <p className="font-semibold">Order placed. Thank you!</p>

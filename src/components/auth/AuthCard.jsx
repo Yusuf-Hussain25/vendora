@@ -91,7 +91,7 @@ export default function AuthCard({ initialMode, next, googleEnabled, demos, demo
   };
 
   return (
-    <div className="w-full max-w-[440px] card !rounded-[28px] p-6 sm:p-8 shadow-lg fade-up">
+    <div className="w-full max-w-[440px] card !rounded-[14px] p-6 sm:p-8 shadow-lg fade-up">
       <h2 className="text-2xl font-semibold tracking-tight">{mode === "signup" ? "Create your account" : "Welcome back"}</h2>
       <p className="mt-1.5 text-sm text-text-2">
         {mode === "signup" ? "Shop every store with one account." : "Log in to see your cart, orders and deliveries."}
@@ -156,7 +156,7 @@ export default function AuthCard({ initialMode, next, googleEnabled, demos, demo
         </div>
 
         {error && (
-          <p role="alert" className="rounded-[12px] px-3.5 py-2.5 text-sm bg-[rgba(244,63,94,.1)] text-danger border border-[rgba(244,63,94,.25)]">
+          <p role="alert" className="rounded-[12px] px-3.5 py-2.5 text-sm bg-sale-soft text-danger border border-sale/30">
             {error}
           </p>
         )}
@@ -184,7 +184,7 @@ export default function AuthCard({ initialMode, next, googleEnabled, demos, demo
           </button>
         )}
         {demos.length > 0 && (
-          <div className="rounded-[20px] border border-dashed border-border-strong p-3">
+          <div className="rounded-[12px] border border-dashed border-border-strong p-3">
             {demos.length > 1 && (
               <div className="flex flex-wrap gap-1.5 mb-3" role="radiogroup" aria-label="Demo role">
                 {demos.map((d) => (

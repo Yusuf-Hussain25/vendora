@@ -15,7 +15,7 @@ export default function GlobalError({ error, reset }) {
               {dev ? "The app is missing some configuration. Check your .env file against .env.example." : "We hit a problem loading the store. Please try again shortly."}
             </p>
             {dev && error?.message && (
-              <pre className="mt-5 text-left text-xs whitespace-pre-wrap rounded-[14px] bg-surface-2 border border-border p-4 text-text-2">{error.message}</pre>
+              <pre className="mt-5 text-left text-xs whitespace-pre-wrap rounded-[8px] bg-surface-2 border border-border p-4 text-text-2">{error.message}</pre>
             )}
             <button className="btn btn-primary mt-8" onClick={reset}>
               Try again

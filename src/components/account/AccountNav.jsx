@@ -27,7 +27,7 @@ export default function AccountNav() {
           >
             <Icon className="w-4 h-4" />
             {label}
-            {active && <span className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-[image:var(--accent-grad)]" />}
+            {active && <span className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-accent" />}
           </Link>
         );
       })}

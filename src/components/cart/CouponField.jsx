@@ -13,7 +13,7 @@ export default function CouponField({ subtotal, coupon, onChange }) {
 
   if (coupon) {
     return (
-      <div className="flex items-center justify-between gap-3 rounded-[14px] px-3.5 py-2.5 bg-accent-soft border border-[rgba(20,184,166,.3)]">
+      <div className="flex items-center justify-between gap-3 rounded-[8px] px-3.5 py-2.5 bg-accent-soft border border-accent/25">
         <span className="flex items-center gap-2 text-sm">
           <BadgePercent className="w-4 h-4 text-accent-text" />
           <span>
