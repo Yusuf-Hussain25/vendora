@@ -537,6 +537,41 @@ for (const order of delivered) {
   }
 }
 
+console.log("Inventory history…");
+// SKUs for every product, then a stock history that adds up to today's stock:
+// opening stock (today's stock plus everything sold since), then each sale in date order.
+const unskued = await prisma.product.findMany({ where: { sku: null }, select: { id: true }, orderBy: { createdAt: "asc" } });
+const skuStart = (await prisma.product.count({ where: { sku: { not: null } } })) + 1001;
+for (const [i, p] of unskued.entries()) await prisma.product.update({ where: { id: p.id }, data: { sku: `VND-${skuStart + i}` } });
+
+const withHistory = new Set((await prisma.stockMovement.findMany({ distinct: ["productId"], select: { productId: true } })).map((m) => m.productId));
+const fresh = await prisma.product.findMany({ where: { id: { notIn: [...withHistory] } }, select: { id: true, storeId: true, stock: true, createdAt: true } });
+if (fresh.length) {
+  const sold = await prisma.orderItem.findMany({
+    where: { productId: { in: fresh.map((p) => p.id) }, order: { status: { not: "CANCELLED" } } },
+    select: { productId: true, quantity: true, order: { select: { id: true, number: true, createdAt: true, userId: true } } },
+    orderBy: { order: { createdAt: "asc" } },
+  });
+  const soldBy = Object.groupBy(sold, (s) => s.productId);
+  const rows = [];
+  for (const p of fresh) {
+    const sales = soldBy[p.id] || [];
+    let balance = p.stock + sales.reduce((sum, s) => sum + s.quantity, 0);
+    // A product can't be sold before it was listed: open the stock an hour before the first sale
+    const openedAt = sales.length && sales[0].order.createdAt < p.createdAt ? new Date(sales[0].order.createdAt.getTime() - HOUR) : p.createdAt;
+    if (openedAt !== p.createdAt) await prisma.product.update({ where: { id: p.id }, data: { createdAt: openedAt } });
+    rows.push({ productId: p.id, storeId: p.storeId, change: balance, balance, reason: "INITIAL", note: "Opening stock", createdAt: openedAt });
+    for (const s of sales) {
+      balance -= s.quantity;
+      rows.push({
+        productId: p.id, storeId: p.storeId, change: -s.quantity, balance, reason: "SALE", note: `Order ${s.order.number}`,
+        orderId: s.order.id, userId: s.order.userId, createdAt: s.order.createdAt,
+      });
+    }
+  }
+  await prisma.stockMovement.createMany({ data: rows });
+}
+
 // Ratings and sales counts are stored on products for fast sorting
 await prisma.$executeRaw`
   UPDATE "Product" p SET
