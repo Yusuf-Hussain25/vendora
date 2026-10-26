@@ -18,7 +18,7 @@ export default function StoreForm({ store, mode = "apply", defaults = {} }) {
     email: store?.email || defaults.email || "",
     phone: store?.phone || "",
     address: store?.address || "",
-    city: store?.city || "San Francisco",
+    city: store?.city || "",
     lat: store?.lat ?? null,
     lng: store?.lng ?? null,
   });

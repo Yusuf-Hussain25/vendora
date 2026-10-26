@@ -18,7 +18,7 @@ export default function DeliverTo({ addresses, signedIn }) {
   useDismiss(open, ref, close);
 
   const current = addresses.find((a) => a.isDefault) || addresses[0];
-  const label = current ? `${current.city} ${current.zip}` : "San Francisco";
+  const label = current ? `${current.city} ${current.zip}` : "India";
 
   const choose = async (id) => {
     setBusy(id);
@@ -80,8 +80,8 @@ export default function DeliverTo({ addresses, signedIn }) {
             </>
           ) : (
             <div className="p-3">
-              <p className="text-sm font-medium">We deliver across San Francisco</p>
-              <p className="mt-1 text-xs text-text-2">Log in to choose a saved address for checkout.</p>
+              <p className="text-sm font-medium">We deliver across India</p>
+              <p className="mt-1 text-xs text-text-2">Log in to pick a saved address, or add one with your PIN code.</p>
               <Link href="/login" onClick={close} className="btn btn-primary btn-sm btn-block mt-3">
                 Log in
               </Link>

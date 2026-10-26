@@ -1,8 +1,10 @@
-const currency = process.env.NEXT_PUBLIC_CURRENCY || "USD";
+const currency = process.env.NEXT_PUBLIC_CURRENCY || "INR";
+// Indian digit grouping (₹1,34,900) and compact lakh/crore (₹1.3L)
+const locale = "en-IN";
 
-const moneyFormat = new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 });
-const compactMoney = new Intl.NumberFormat("en-US", { style: "currency", currency, notation: "compact", maximumFractionDigits: 1 });
-const compactNumber = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
+const moneyFormat = new Intl.NumberFormat(locale, { style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 2 });
+const compactMoney = new Intl.NumberFormat(locale, { style: "currency", currency, notation: "compact", maximumFractionDigits: 1 });
+const compactNumber = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
 
 export const CURRENCY = currency;
 
@@ -12,7 +14,7 @@ export const numberCompact = (value) => compactNumber.format(Number(value) || 0)
 
 export const percentOff = (mrp, price) => (mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0);
 
-const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+const rtf = new Intl.RelativeTimeFormat("en-IN", { numeric: "auto" });
 const units = [
   ["year", 31536000],
   ["month", 2592000],
@@ -31,10 +33,10 @@ export function timeAgo(date) {
 }
 
 export const shortDate = (date) =>
-  new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  new Date(date).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
 
 export const dateTime = (date) =>
-  new Date(date).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  new Date(date).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 
 export const initials = (name = "") =>
   name

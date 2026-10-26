@@ -17,7 +17,7 @@ export async function dailyRevenue({ storeId, days = 14 } = {}) {
 
   const buckets = Array.from({ length: days }, (_, i) => {
     const date = new Date(start.getTime() + i * DAY);
-    return { key: date.toDateString(), day: date.toLocaleDateString("en-US", { month: "short", day: "numeric" }), revenue: 0, orders: 0 };
+    return { key: date.toDateString(), day: date.toLocaleDateString("en-IN", { day: "numeric", month: "short" }), revenue: 0, orders: 0 };
   });
   const byKey = Object.fromEntries(buckets.map((b) => [b.key, b]));
   for (const o of orders) {

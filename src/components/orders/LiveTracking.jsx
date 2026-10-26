@@ -8,7 +8,6 @@ import LazyDeliveryMap from "@/components/map/LazyDeliveryMap";
 import { timeAgo } from "@/lib/format";
 
 const FINAL = ["DELIVERED", "CANCELLED"];
-const SF = { lat: 37.7749, lng: -122.4194 };
 
 export default function LiveTracking({ orderId, status: initialStatus, store, home, rider, initialRiderSpot, otp, showOtp = true }) {
   const router = useRouter();
@@ -44,7 +43,7 @@ export default function LiveTracking({ orderId, status: initialStatus, store, ho
 
   const onTheWay = status === "OUT_FOR_DELIVERY";
   const storePoint = store.lat != null ? { lat: store.lat, lng: store.lng, label: store.name } : null;
-  const homePoint = { ...(home.lat != null ? { lat: home.lat, lng: home.lng } : SF), label: "You" };
+  const homePoint = home.lat != null ? { lat: home.lat, lng: home.lng, label: "You" } : null;
   const riderPoint = onTheWay && spot ? { lat: spot.lat, lng: spot.lng, label: rider ? rider.name.split(" ")[0] : "Rider" } : null;
 
   const headline = {

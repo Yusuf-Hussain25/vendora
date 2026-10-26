@@ -83,7 +83,7 @@ export default function Footer() {
         <div className="container-x py-5 pb-24 lg:pb-5 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-[12.5px] text-text-3">
           <p>© {new Date().getFullYear()} Vendora. A portfolio project by Yusuf Hussain.</p>
           <div className="flex items-center gap-4">
-            <p>Prices in {process.env.NEXT_PUBLIC_CURRENCY || "USD"} · payments in test mode</p>
+            <p>Prices in Indian rupees, inclusive of GST · payments in test mode</p>
             <ThemeToggle className="btn-sm" />
           </div>
         </div>

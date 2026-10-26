@@ -2,8 +2,9 @@ import { money } from "@/lib/format";
 
 // Pricing rules shared by the cart (client) and checkout (server), so totals always match.
 
-export const FREE_DELIVERY_OVER = 50;
-export const DELIVERY_FEE = 4.99;
+// Amounts in rupees
+export const FREE_DELIVERY_OVER = 499;
+export const DELIVERY_FEE = 49;
 
 export const isDealLive = (product, now = Date.now()) =>
   product.dealPrice != null && product.dealEndsAt != null && new Date(product.dealEndsAt).getTime() > now;

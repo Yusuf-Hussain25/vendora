@@ -3,6 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useMemo } from "react";
 import L from "leaflet";
+import { INDIA_CENTER } from "@/lib/india";
 import { MapContainer, Marker, Polyline, TileLayer, Tooltip, useMap } from "react-leaflet";
 
 const pin = (bg, svg, pulse = false) =>
@@ -39,7 +40,7 @@ function FitBounds({ points }) {
 // store / home / rider are { lat, lng, label } or null
 export default function DeliveryMap({ store, home, rider, className = "", interactive = true }) {
   const points = useMemo(() => [store, home, rider].filter(Boolean).map((p) => [p.lat, p.lng]), [store, home, rider]);
-  const center = points[0] || [37.7749, -122.4194];
+  const center = points[0] || [INDIA_CENTER.lat, INDIA_CENTER.lng];
 
   return (
     <div className={`map-themed overflow-hidden ${className}`}>

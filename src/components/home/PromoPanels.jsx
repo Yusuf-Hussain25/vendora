@@ -12,7 +12,7 @@ export default function PromoPanels({ groceryCount, electronicsCount }) {
         <div className="absolute inset-0 bg-forest/80 md:bg-transparent md:bg-gradient-to-r md:from-forest md:via-forest/85 md:to-transparent" />
         <div className="relative self-center p-7 sm:p-10 max-w-[330px]">
           <h3 className="font-display text-[34px] sm:text-[40px] leading-[1.05]">Fresh groceries from local stores.</h3>
-          <p className="mt-3 text-[15px] text-ivory/80">Picked from Bay Area farms and delivered the same day. {groceryCount} items in stock.</p>
+          <p className="mt-3 text-[15px] text-ivory/80">Fresh produce, dairy and your favourite Indian brands from neighbourhood stores. {groceryCount} items in stock.</p>
           <span className="btn btn-light mt-6">
             Shop groceries
             <ArrowRight className="transition-transform group-hover:translate-x-0.5" />

@@ -7,17 +7,18 @@ import { toast } from "sonner";
 import { completeDelivery, markPickedUp, updateLocation } from "@/actions/rider";
 import { distanceKm, formatKm, lerp } from "@/lib/geo";
 import { money } from "@/lib/format";
+import { INDIA_CENTER } from "@/lib/india";
 import StatusBadge from "@/components/ui/StatusBadge";
 import LazyDeliveryMap from "@/components/map/LazyDeliveryMap";
 
-const SF = { lat: 37.7749, lng: -122.4194 };
 const SIM_STEPS = 16;
 const SIM_EVERY_MS = 3000;
 
 export default function ActiveDelivery({ order }) {
   const router = useRouter();
-  const home = { ...(order.shippingAddress.lat != null ? { lat: order.shippingAddress.lat, lng: order.shippingAddress.lng } : SF) };
   const store = order.store.lat != null ? { lat: order.store.lat, lng: order.store.lng } : null;
+  // Addresses are placed by PIN code when saved; fall back to the store, then the centre of India
+  const home = order.shippingAddress.lat != null ? { lat: order.shippingAddress.lat, lng: order.shippingAddress.lng } : store || INDIA_CENTER;
 
   const [spot, setSpot] = useState(order.riderLat != null ? { lat: order.riderLat, lng: order.riderLng } : null);
   const [mode, setMode] = useState(null); // "gps" | "sim" | null
