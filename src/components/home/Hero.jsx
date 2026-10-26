@@ -1,43 +1,85 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, CirclePlay, LockKeyhole, MapPinned, Truck } from "lucide-react";
-import hero from "../../../public/images/editorial/hero.jpg";
+import { ArrowRight, BadgeCheck, CirclePlay, MapPinned, ShieldCheck, Truck } from "lucide-react";
+import iphone from "../../../public/images/editorial/hero-iphone.jpg";
+import macbook from "../../../public/images/editorial/hero-macbook.jpg";
+import groceries from "../../../public/images/editorial/groceries.jpg";
+import { money } from "@/lib/format";
+import HeroSlider from "./HeroSlider";
 
 const trust = [
   [Truck, "Same-day", "delivery"],
-  [LockKeyhole, "Secure", "checkout"],
+  [ShieldCheck, "Secure", "checkout"],
   [BadgeCheck, "Verified", "local stores"],
   [MapPinned, "Live order", "tracking"],
 ];
 
-// featured: a real store from the catalog, shown as the caption inside the photograph
-export default function Hero({ featured }) {
+// picks: real catalog records for each slide ({ id, name, price, store }), or null when missing
+export default function Hero({ picks }) {
+  const slides = [
+    picks.iphone && {
+      key: "iphone",
+      image: iphone,
+      alt: "iPhone 17 Pro on a sunlit wooden table",
+      position: "45% 50%",
+      eyebrow: `New at ${picks.iphone.store.name}`,
+      title: picks.iphone.name,
+      line: `From ${money(picks.iphone.price)} · Inclusive of GST`,
+      perks: ["Official warranty", "Fast delivery"],
+      href: `/product/${picks.iphone.id}`,
+    },
+    picks.macbook && {
+      key: "macbook",
+      image: macbook,
+      alt: "MacBook Pro 14-inch with M5 in Space Black on a desk",
+      position: "50% 55%",
+      eyebrow: `Just launched at ${picks.macbook.store.name}`,
+      title: picks.macbook.name,
+      line: `From ${money(picks.macbook.price)} · Inclusive of GST`,
+      perks: ["Official warranty", "No-cost delivery"],
+      href: `/product/${picks.macbook.id}`,
+    },
+    picks.kirana && {
+      key: "kirana",
+      image: groceries,
+      alt: "Fresh vegetables and fruit on a wooden board",
+      position: "60% 50%",
+      eyebrow: "Daily essentials",
+      title: picks.kirana.name,
+      line: `${picks.kirana.count} pantry favourites from ${money(picks.kirana.from)}`,
+      perks: ["Printed MRP", "Delivered today"],
+      href: `/store/${picks.kirana.username}`,
+    },
+  ].filter(Boolean);
+
   return (
-    <section className="border-b border-border overflow-x-clip">
-      <div className="container-x grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-0 items-stretch">
-        <div className="py-12 sm:py-16 lg:py-24 lg:pr-14 flex flex-col justify-center">
-          <p className="eyebrow">Local stores · One cart · Fast delivery</p>
-          <h1 className="font-display mt-6 text-[48px] sm:text-[60px] xl:text-[72px] text-text">
-            Everything you need, from <em className="text-emphasis">local stores.</em>
+    <section className="relative border-b border-border overflow-x-clip">
+      <div className="container-x grid lg:grid-cols-[1fr_1fr] items-stretch">
+        <div className="relative z-10 py-12 sm:py-16 lg:py-20 lg:pr-10 flex flex-col justify-center">
+          <p className="eyebrow">
+            Local stores <span className="mx-2 opacity-60">•</span> One cart <span className="mx-2 opacity-60">•</span> Fast delivery
+          </p>
+          <h1 className="font-display mt-6 text-[48px] sm:text-[62px] xl:text-[68px] leading-[0.98] text-text">
+            Everything you need, <br className="hidden sm:block" />
+            from <em className="text-emphasis">local stores.</em>
           </h1>
-          <p className="mt-6 max-w-[460px] text-[16.5px] leading-relaxed text-text-2">
+          <p className="mt-6 max-w-[470px] text-[17px] leading-relaxed text-text-2">
             Discover fashion, groceries, electronics and home goods from independent stores, all in one place.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/shop" className="btn btn-primary btn-lg group">
+            <Link href="/shop" className="btn btn-primary btn-lg group !h-[54px] !px-8 !text-[16px]">
               Start shopping
               <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
             </Link>
-            <a href="#how-it-works" className="btn btn-secondary btn-lg">
+            <a href="#how-it-works" className="btn btn-secondary btn-lg !h-[54px] !px-7 !text-[16px]">
               <CirclePlay />
               How it works
             </a>
           </div>
-          <ul className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5 max-w-[560px]">
-            {trust.map(([Icon, a, b]) => (
-              <li key={a} className="flex items-center gap-2.5">
-                <Icon className="w-5 h-5 text-accent-text shrink-0" strokeWidth={1.6} />
-                <span className="text-[12.5px] leading-tight text-text-2">
+          <ul className="mt-12 grid grid-cols-2 sm:flex sm:flex-nowrap gap-y-5">
+            {trust.map(([Icon, a, b], i) => (
+              <li key={a} className={`flex items-center gap-2.5 sm:pr-4 sm:mr-4 ${i < trust.length - 1 ? "sm:border-r border-border" : ""}`}>
+                <Icon className="w-[22px] h-[22px] text-text shrink-0" strokeWidth={1.5} />
+                <span className="text-[12.5px] leading-tight text-text-2 whitespace-nowrap">
                   {a}
                   <br />
                   {b}
@@ -47,31 +89,7 @@ export default function Hero({ featured }) {
           </ul>
         </div>
 
-        <div className="relative min-h-[420px] sm:min-h-[520px] -mx-4 sm:mx-0 hero-bleed">
-          <Image
-            src={hero}
-            alt="Wireless headphones resting on a warm, sunlit surface"
-            fill
-            priority
-            placeholder="blur"
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="object-cover object-[50%_60%]"
-          />
-          {featured && (
-            <Link
-              href={`/store/${featured.username}`}
-              className="group absolute left-4 bottom-4 sm:left-8 sm:bottom-8 max-w-[200px] sm:max-w-[260px] bg-ivory/95 text-[#171916] px-4 py-3 sm:px-5 sm:py-4 rounded-md"
-            >
-              <span className="block text-[11px] uppercase tracking-[.16em] text-[#656761]">Featured store</span>
-              <span className="block font-display text-[22px] sm:text-[26px] leading-tight mt-1">{featured.name}</span>
-              <span className="hidden sm:block text-[13px] text-[#656761] mt-1 leading-snug">{featured.tagline}</span>
-              <span className="mt-2 sm:mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium">
-                Shop now
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </Link>
-          )}
-        </div>
+        <HeroSlider slides={slides} />
       </div>
     </section>
   );

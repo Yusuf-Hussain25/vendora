@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { DM_Serif_Display, Inter, Instrument_Serif } from "next/font/google";
 import prisma from "@/lib/prisma";
 import { getCurrentUser, isSeller } from "@/lib/session";
 import { themeInitScript } from "@/lib/theme";
@@ -9,6 +9,8 @@ import CartProvider from "@/components/providers/CartProvider";
 import WishlistProvider from "@/components/providers/WishlistProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+// Bolder serif for the wordmark and section titles
+const dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-dm-serif", display: "swap" });
 const instrument = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-instrument", display: "swap" });
 
 export const metadata = {
@@ -37,7 +39,7 @@ export default async function RootLayout({ children }) {
   };
 
   return (
-    <html lang="en" className={`${inter.variable} ${instrument.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${instrument.variable} ${dmSerif.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>

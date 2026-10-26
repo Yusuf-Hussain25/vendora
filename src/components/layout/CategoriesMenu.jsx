@@ -15,7 +15,7 @@ export default function CategoriesMenu({ counts = {} }) {
   return (
     <div className="relative" ref={ref}>
       <button
-        className={`inline-flex items-center gap-1 h-9 px-3 text-sm transition ${open ? "text-text" : "text-text-2 hover:text-text"}`}
+        className={`inline-flex items-center gap-1.5 h-9 px-3.5 text-[15.5px] transition ${open ? "text-accent-text" : "text-text hover:text-accent-text"}`}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="true"

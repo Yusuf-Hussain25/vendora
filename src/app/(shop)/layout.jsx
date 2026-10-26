@@ -11,7 +11,7 @@ async function featuredCoupon() {
   return prisma.coupon.findFirst({
     where: { isPublic: true, expiresAt: { gt: new Date() } },
     orderBy: [{ forNewUser: "desc" }, { discount: "desc" }],
-    select: { code: true, description: true },
+    select: { code: true, description: true, discount: true, forNewUser: true },
   });
 }
 

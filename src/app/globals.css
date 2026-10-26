@@ -104,6 +104,7 @@
 @theme inline {
   --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: var(--font-instrument), "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-heading: var(--font-dm-serif), Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   --color-bg: var(--bg);

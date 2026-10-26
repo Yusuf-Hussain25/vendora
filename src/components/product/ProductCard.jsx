@@ -12,7 +12,9 @@ import { categoryBySlug } from "@/lib/catalog";
 import { money, numberCompact, percentOff } from "@/lib/format";
 import DealCountdown from "./DealCountdown";
 
-export default function ProductCard({ product, priority = false, showStore = false }) {
+// variant "photo" shows a lifestyle photograph edge to edge (new launches); the default shows a cut-out on the image well
+export default function ProductCard({ product, priority = false, showStore = false, variant }) {
+  const photo = variant === "photo";
   const { add } = useCart();
   const wishlist = useWishlist();
   const router = useRouter();
@@ -23,6 +25,8 @@ export default function ProductCard({ product, priority = false, showStore = fal
   const saved = wishlist.has(product.id);
   const soldOut = product.stock <= 0;
   const needsSize = product.sizes?.length > 0;
+  // Photo cards prefer the original photograph over a background-removed cut-out
+  const image = photo ? product.images.find((src) => !src.endsWith(".webp")) || product.images[0] : product.images[0];
 
   const quickAdd = () => {
     // Sized items need a size choice, so send the shopper to the product page
@@ -38,15 +42,15 @@ export default function ProductCard({ product, priority = false, showStore = fal
 
   return (
     <article className="group relative flex flex-col bg-panel border border-border rounded-lg overflow-hidden transition-colors duration-200 hover:border-border-strong">
-      <div className="relative aspect-square bg-media overflow-hidden">
+      <div className={`relative bg-media overflow-hidden ${photo ? "aspect-[3/2] m-2.5 mb-0 rounded-md" : "aspect-square"}`}>
         <Link href={`/product/${product.id}`} aria-label={product.name} className="relative block w-full h-full">
           <Image
-            src={product.images[0]}
+            src={image}
             alt={product.name}
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1280px) 25vw, 20vw"
             priority={priority}
-            className="object-contain p-5 blend-media transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            className={`transition-transform duration-500 ease-out group-hover:scale-[1.04] ${photo ? "object-cover" : "object-contain p-5 blend-media"}`}
           />
         </Link>
         <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1">
@@ -76,7 +80,7 @@ export default function ProductCard({ product, priority = false, showStore = fal
       </div>
 
       <div className="flex flex-col flex-1 p-3.5 pt-3">
-        <Link href={`/product/${product.id}`} className="text-[14px] font-medium leading-snug line-clamp-2 hover:underline underline-offset-4 decoration-1">
+        <Link href={`/product/${product.id}`} className={`font-medium leading-snug line-clamp-2 hover:underline underline-offset-4 decoration-1 ${photo ? "text-[15px]" : "text-[14px]"}`}>
           {product.name}
         </Link>
         <Link
@@ -90,7 +94,7 @@ export default function ProductCard({ product, priority = false, showStore = fal
         <div className="mt-auto pt-3 flex items-end justify-between gap-2">
           <div className="min-w-0">
             <p className="flex items-baseline flex-wrap gap-x-1.5">
-              <span className={`text-[17px] font-semibold tracking-tight ${off > 0 ? "text-sale" : ""}`}>{money(price)}</span>
+              <span className={`font-semibold tracking-tight ${photo ? "text-[20px]" : "text-[17px]"} ${off > 0 ? "text-sale" : ""}`}>{money(price)}</span>
               {off > 0 && <span className="text-[12.5px] text-text-3 line-through">{money(product.mrp)}</span>}
             </p>
             <p className="mt-1 h-4 flex items-center gap-1 text-[12px] text-text-3">
@@ -107,11 +111,11 @@ export default function ProductCard({ product, priority = false, showStore = fal
           <button
             onClick={quickAdd}
             disabled={soldOut}
-            className="grid place-items-center w-9 h-9 shrink-0 rounded-md bg-accent text-on-accent transition-colors hover:bg-accent-strong disabled:opacity-40 disabled:cursor-not-allowed"
+            className={`grid place-items-center shrink-0 rounded-md bg-accent text-on-accent transition-colors hover:bg-accent-strong disabled:opacity-40 disabled:cursor-not-allowed ${photo ? "w-11 h-11" : "w-9 h-9"}`}
             aria-label={soldOut ? `${product.name} is sold out` : needsSize ? `Choose a size for ${product.name}` : `Add ${product.name} to cart`}
             title={soldOut ? "Sold out" : needsSize ? "Choose size" : "Add to cart"}
           >
-            <ShoppingCart className="w-4 h-4" />
+            <ShoppingCart className={photo ? "w-5 h-5" : "w-4 h-4"} />
           </button>
         </div>
       </div>

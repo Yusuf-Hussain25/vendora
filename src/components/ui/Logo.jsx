@@ -11,11 +11,11 @@ export function LogoMark({ size = 30, className = "" }) {
   );
 }
 
-export default function Logo({ href = "/", size = 30, showText = true, className = "" }) {
+export default function Logo({ href = "/", size = 36, showText = true, className = "" }) {
   return (
     <Link href={href} className={`inline-flex items-center gap-2 shrink-0 ${className}`} aria-label="Vendora home">
       <LogoMark size={size} />
-      {showText && <span className="font-display text-[27px] leading-none tracking-[-0.01em] text-text">Vendora</span>}
+      {showText && <span className="font-heading text-[32px] leading-none tracking-[-0.02em] text-text">Vendora</span>}
     </Link>
   );
 }

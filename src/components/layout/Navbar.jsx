@@ -25,7 +25,7 @@ export default function Navbar({ categoryCounts, addresses, signedIn }) {
 
   return (
     <header className="sticky top-0 z-40 bg-bg border-b border-border">
-      <div className="container-x flex items-center gap-2 lg:gap-6 h-[68px]">
+      <div className="container-x flex items-center gap-2 lg:gap-7 h-[76px]">
         <button className="btn btn-ghost btn-icon lg:hidden -ml-2" onClick={() => setMenuOpen(true)} aria-label="Open menu" aria-expanded={menuOpen}>
           <Menu />
         </button>
@@ -38,17 +38,17 @@ export default function Navbar({ categoryCounts, addresses, signedIn }) {
                 key={href}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`relative h-9 px-3 inline-flex items-center text-sm transition ${active ? "text-text font-medium" : "text-text-2 hover:text-text"}`}
+                className={`relative h-9 px-3.5 inline-flex items-center text-[15.5px] transition ${active ? "text-text font-semibold" : "text-text hover:text-accent-text"}`}
               >
                 {label}
-                {active && <span className="absolute left-3 right-3 -bottom-[16px] h-[2px] bg-accent" />}
+                {active && <span className="absolute left-3.5 right-3.5 -bottom-[20px] h-[2px] bg-accent" />}
               </Link>
             );
           })}
           <CategoriesMenu counts={categoryCounts} />
         </nav>
         <Suspense fallback={<div className="hidden md:block flex-1" />}>
-          <SearchBar className="hidden md:block flex-1 max-w-[460px] ml-auto" />
+          <SearchBar className="hidden md:block flex-1 max-w-[520px] ml-auto" />
         </Suspense>
         <div className="flex items-center gap-0.5 ml-auto md:ml-0">
           <div className="hidden xl:block">

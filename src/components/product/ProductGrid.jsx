@@ -5,11 +5,11 @@ const COLS = {
   5: "grid-cols-2 sm:grid-cols-3 lg:grid-cols-5",
 };
 
-export default function ProductGrid({ products, priorityCount = 0, columns = 4, showStore = false, className = "" }) {
+export default function ProductGrid({ products, priorityCount = 0, columns = 4, showStore = false, variant, className = "" }) {
   return (
     <div className={`grid ${COLS[columns]} gap-3 sm:gap-4 ${className}`}>
       {products.map((p, i) => (
-        <ProductCard key={p.id} product={p} priority={i < priorityCount} showStore={showStore} />
+        <ProductCard key={p.id} product={p} priority={i < priorityCount} showStore={showStore} variant={variant} />
       ))}
     </div>
   );

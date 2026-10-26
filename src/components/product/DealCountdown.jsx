@@ -27,7 +27,7 @@ export default function DealCountdown({ endsAt, variant = "inline", className = 
         ? "bg-ivory text-forest"
         : "bg-panel border border-border text-text";
     return (
-      <div className={`flex items-center gap-2 ${className}`} role="timer" aria-label={`${time.h} hours ${time.m} minutes left`}>
+      <div className={`flex items-center gap-2 ${className}`} role="timer" aria-label={`${time.h} hours ${time.m} minutes left`} suppressHydrationWarning>
         {[
           [time.h, "Hours"],
           [time.m, "Minutes"],
