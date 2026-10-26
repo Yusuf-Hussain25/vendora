@@ -25,9 +25,11 @@ export const parseLineKey = (key) => {
 // One delivery fee per store, waived when that store's subtotal reaches the threshold
 export const deliveryFeeFor = (storeSubtotal) => (storeSubtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE);
 
+export const isExpired = (coupon, now = Date.now()) => new Date(coupon.expiresAt).getTime() <= now;
+
 export function couponProblem(coupon, { subtotal, isNewCustomer, now = Date.now() }) {
   if (!coupon) return "That code doesn't exist.";
-  if (new Date(coupon.expiresAt).getTime() <= now) return "That code has expired.";
+  if (isExpired(coupon, now)) return "That code has expired.";
   if (coupon.forNewUser && !isNewCustomer) return "That code is for your first order only.";
   if (subtotal < coupon.minOrder) return `Add items worth ${money(coupon.minOrder)} or more to use this code.`;
   return null;
