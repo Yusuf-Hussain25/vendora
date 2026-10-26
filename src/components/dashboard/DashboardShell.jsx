@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BadgePercent,
+  Boxes,
   Bike,
   ClipboardList,
   ExternalLink,
@@ -25,6 +26,7 @@ const NAV = {
   seller: [
     { href: "/seller", label: "Overview", icon: LayoutDashboard, exact: true },
     { href: "/seller/products", label: "Products", icon: Package },
+    { href: "/seller/inventory", label: "Inventory", icon: Boxes, badgeKey: "inventory" },
     { href: "/seller/orders", label: "Orders", icon: ClipboardList, badgeKey: "orders" },
     { href: "/seller/settings", label: "Store settings", icon: Settings },
   ],
@@ -32,6 +34,7 @@ const NAV = {
     { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
     { href: "/admin/stores", label: "Stores", icon: Store, badgeKey: "stores" },
     { href: "/admin/orders", label: "Orders", icon: ClipboardList },
+    { href: "/admin/inventory", label: "Inventory", icon: Boxes },
     { href: "/admin/riders", label: "Riders", icon: Bike },
     { href: "/admin/coupons", label: "Coupons", icon: BadgePercent },
     { href: "/admin/users", label: "Customers", icon: Users },
