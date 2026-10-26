@@ -1,0 +1,18 @@
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+.env
+.env*.local
+!.env.example
+
+.DS_Store
+*.log
+.vercel
+
+# course material never goes in git
+*.pdf

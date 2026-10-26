@@ -1,0 +1,297 @@
+// Vendora data model. Runs on Neon (or any Postgres): set DATABASE_URL in .env.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+  RIDER
+}
+
+enum StoreStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum OrderStatus {
+  PLACED
+  CONFIRMED
+  PACKED
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  COD
+  STRIPE
+}
+
+// ----------------------------------------------------------------- auth
+// User, Session, Account and Verification follow the Better Auth schema.
+
+model User {
+  id            String   @id
+  name          String
+  email         String   @unique
+  emailVerified Boolean  @default(false)
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  role     Role    @default(CUSTOMER)
+  phone    String?
+  // Cart lines keyed by "productId" or "productId:size" → quantity
+  cart     Json    @default("{}")
+  // Rider fields
+  vehicle  String?
+  isOnline Boolean @default(false)
+
+  sessions   Session[]
+  accounts   Account[]
+  store      Store?
+  addresses  Address[]
+  orders     Order[]        @relation("BuyerOrders")
+  deliveries Order[]        @relation("RiderOrders")
+  ratings    Rating[]
+  wishlist   WishlistItem[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+  @@map("verification")
+}
+
+// ------------------------------------------------------------- catalog
+
+model Store {
+  id          String      @id @default(cuid())
+  ownerId     String      @unique
+  name        String
+  username    String      @unique
+  tagline     String
+  description String
+  logo        String
+  banner      String?
+  email       String
+  phone       String
+  address     String
+  city        String
+  // Pickup point, used as the start of the delivery route on the live map
+  lat         Float?
+  lng         Float?
+  status      StoreStatus @default(PENDING)
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  owner    User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  products Product[]
+  orders   Order[]
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  storeId     String
+  name        String
+  description String
+  brand       String?
+  category    String
+  subCategory String?
+  images      String[]
+  mrp         Float
+  price       Float
+  // Flash deal: dealPrice applies until dealEndsAt
+  dealPrice   Float?
+  dealEndsAt  DateTime?
+  // Groceries are sold per unit ("1 kg", "500 ml"); fashion uses sizes
+  unit        String?
+  sizes       String[]  @default([])
+  tags        String[]  @default([])
+  stock       Int       @default(50)
+  isActive    Boolean   @default(true)
+  ratingAvg   Float     @default(0)
+  ratingCount Int       @default(0)
+  soldCount   Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  store      Store          @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+  ratings    Rating[]
+  wishlisted WishlistItem[]
+
+  @@index([category])
+  @@index([storeId])
+}
+
+// -------------------------------------------------------------- buying
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String   @default("Home")
+  name      String
+  phone     String
+  street    String
+  city      String
+  state     String
+  zip       String
+  country   String
+  lat       Float?
+  lng       Float?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Coupon {
+  code        String   @id
+  description String
+  // Percentage off the order subtotal
+  discount    Float
+  minOrder    Float    @default(0)
+  forNewUser  Boolean  @default(false)
+  isPublic    Boolean  @default(true)
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  // Short, human-friendly reference shown to buyers ("VND-48213")
+  number          String        @unique
+  // Orders placed in one checkout share a group (one per store)
+  checkoutId      String
+  userId          String
+  storeId         String
+  riderId         String?
+  // Address copied at checkout so later edits don't change past orders
+  shippingAddress Json
+  subtotal        Float
+  discount        Float         @default(0)
+  deliveryFee     Float         @default(0)
+  total           Float
+  couponCode      String?
+  paymentMethod   PaymentMethod
+  isPaid          Boolean       @default(false)
+  status          OrderStatus   @default(PLACED)
+  // [{ status, at, note? }]
+  statusHistory   Json          @default("[]")
+  deliveryOtp     String
+  riderLat        Float?
+  riderLng        Float?
+  riderSeenAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user  User        @relation("BuyerOrders", fields: [userId], references: [id])
+  store Store       @relation(fields: [storeId], references: [id])
+  rider User?       @relation("RiderOrders", fields: [riderId], references: [id])
+  items OrderItem[]
+
+  @@index([userId])
+  @@index([storeId])
+  @@index([riderId])
+  @@index([checkoutId])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  productId String
+  name      String
+  image     String
+  size      String?
+  unit      String?
+  quantity  Int
+  price     Float
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  orderId   String
+  rating    Int
+  review    String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId, orderId])
+  @@index([productId])
+}
+
+model WishlistItem {
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@id([userId, productId])
+}

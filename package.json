@@ -1,0 +1,39 @@
+{
+  "name": "vendora",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vendora: a multi-vendor marketplace for fashion, groceries and everyday goods, with live delivery tracking.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "seed": "node scripts/seed.mjs",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "better-auth": "^1.7.13",
+    "geist": "^1.8.2",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.61.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-leaflet": "^5.0.0",
+    "recharts": "^3.10.1",
+    "server-only": "^0.0.1",
+    "sonner": "^2.0.8",
+    "stripe": "^23.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "dotenv": "^18.0.9",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.3",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4.3.3"
+  }
+}
