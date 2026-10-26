@@ -1,182 +1,115 @@
 import Link from "next/link";
-import { ArrowRight, Bike, CreditCard, MapPinned, PackageCheck, ShieldCheck, Store, Timer } from "lucide-react";
+import { ArrowRight, CreditCard, MapPinned, PackageCheck, ShieldCheck } from "lucide-react";
 import prisma from "@/lib/prisma";
-import { CATEGORIES } from "@/lib/catalog";
 import { getCategoryCounts, getLiveDeals, getStoresWithStats, productCardSelect, visibleProduct } from "@/lib/queries";
 import Hero from "@/components/home/Hero";
-import SectionHeader from "@/components/ui/SectionHeader";
-import CategoryIcon from "@/components/ui/CategoryIcon";
-import ProductGrid, { ProductRail } from "@/components/product/ProductGrid";
-import StoreCard from "@/components/store/StoreCard";
-import DealCountdown from "@/components/product/DealCountdown";
+import CategoryRow from "@/components/home/CategoryRow";
+import FlashBanner from "@/components/home/FlashBanner";
+import PromoPanels from "@/components/home/PromoPanels";
+import StoreRow from "@/components/home/StoreRow";
+import ProductGrid from "@/components/product/ProductGrid";
+
+function SectionTitle({ title, href, linkLabel = "View all" }) {
+  return (
+    <div className="flex items-end justify-between gap-4 mb-6">
+      <h2 className="text-[26px] sm:text-[30px] font-semibold tracking-[-0.02em]">{title}</h2>
+      {href && (
+        <Link href={href} className="link-arrow shrink-0">
+          {linkLabel}
+          <ArrowRight />
+        </Link>
+      )}
+    </div>
+  );
+}
 
 export default async function HomePage() {
-  const [deals, trending, fresh, newest, stores, storeCount, counts, ratingAgg, liveOrder] = await Promise.all([
-    getLiveDeals(12),
-    prisma.product.findMany({ where: visibleProduct, select: productCardSelect, orderBy: { soldCount: "desc" }, take: 8 }),
-    prisma.product.findMany({
-      where: { ...visibleProduct, category: "grocery" },
-      select: productCardSelect,
-      orderBy: [{ soldCount: "desc" }],
-      take: 10,
-    }),
-    prisma.product.findMany({ where: visibleProduct, select: productCardSelect, orderBy: { createdAt: "desc" }, take: 8 }),
-    getStoresWithStats({ take: 6 }),
-    prisma.store.count({ where: { status: "APPROVED", isActive: true } }),
+  const [deals, bestSellers, stores, counts, featured] = await Promise.all([
+    getLiveDeals(10),
+    prisma.product.findMany({ where: visibleProduct, select: productCardSelect, orderBy: { soldCount: "desc" }, take: 10 }),
+    getStoresWithStats(),
     getCategoryCounts(),
-    prisma.product.aggregate({ where: { ...visibleProduct, ratingCount: { gt: 0 } }, _avg: { ratingAvg: true } }),
-    prisma.order.findFirst({ where: { status: "OUT_FOR_DELIVERY" }, select: { number: true }, orderBy: { updatedAt: "desc" } }),
+    // The electronics store with the most products leads the hero (it sells the pictured headphones)
+    prisma.store.findFirst({
+      where: { status: "APPROVED", isActive: true, products: { some: { category: "electronics", isActive: true } } },
+      orderBy: { products: { _count: "desc" } },
+      select: { name: true, username: true, tagline: true },
+    }),
   ]);
 
-  const stats = {
-    products: Object.values(counts).reduce((a, b) => a + b, 0),
-    stores: storeCount,
-    rating: ratingAgg._avg.ratingAvg || 0,
-    liveOrder: liveOrder?.number,
-  };
-  const soonestDeal = deals[0];
-  // Lead the hero with the most eye-catching deals: priciest first, one per department
-  const heroDeals = [...deals]
-    .sort((a, b) => b.mrp - a.mrp)
-    .filter((d, i, list) => list.findIndex((x) => x.category === d.category) === i && d.category !== "home")
-    .slice(0, 3);
+  const popularStores = [...stores].sort((a, b) => b.sold - a.sold).slice(0, 8);
+  // Lead with the most notable deal from each department, then fill with the rest
+  const byValue = [...deals].sort((a, b) => b.mrp - a.mrp);
+  const leaders = byValue.filter((d, i, list) => list.findIndex((x) => x.category === d.category) === i);
+  const dealPicks = [...leaders, ...byValue.filter((d) => !leaders.includes(d))].slice(0, 6);
 
   return (
     <>
-      <Hero deals={heroDeals} stats={stats} />
+      <Hero featured={featured} />
 
-      {/* Departments */}
-      <section className="container-x mt-14">
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-          {CATEGORIES.map((c) => (
-            <Link
-              key={c.slug}
-              href={`/shop?category=${c.slug}`}
-              className="group card p-4 flex flex-col gap-3 transition hover:-translate-y-0.5 hover:border-border-strong"
-            >
-              <span
-                className="grid place-items-center w-11 h-11 rounded-[14px] transition group-hover:scale-110"
-                style={{ background: `${c.hue}22`, color: c.hue }}
-              >
-                <CategoryIcon name={c.icon} className="w-5 h-5" />
-              </span>
-              <span>
-                <span className="block text-sm font-semibold">{c.name}</span>
-                <span className="block text-xs text-text-3 mt-0.5">{counts[c.slug] || 0} items</span>
-              </span>
-            </Link>
-          ))}
-        </div>
+      <section className="container-x pt-14 sm:pt-20">
+        <SectionTitle title="Shop by category" href="/shop" linkLabel="All products" />
+        <CategoryRow counts={counts} />
       </section>
 
-      {/* Flash deals */}
       {deals.length > 0 && (
-        <section className="container-x mt-20">
-          <SectionHeader eyebrow="Flash deals" title="Prices drop, clocks tick" subtitle="Limited-time prices from across the marketplace." href="/deals">
-            {soonestDeal && (
-              <div className="hidden md:flex items-center gap-3 ml-auto mr-2 text-sm text-text-2">
-                <Timer className="w-4 h-4 text-deal" />
-                Next deal ends in
-                <DealCountdown endsAt={soonestDeal.dealEndsAt} variant="blocks" />
-              </div>
-            )}
-          </SectionHeader>
-          <ProductRail products={deals} />
+        <section className="container-x pt-14 sm:pt-20">
+          <FlashBanner endsAt={deals[0].dealEndsAt} count={deals.length} />
+          <div className="mt-8">
+            <SectionTitle title="Today's flash deals" href="/deals" />
+            {/* 6 cards fill 2x3 and 3x2 grids; the sixth hides on the 5-column desktop row */}
+            <ProductGrid products={dealPicks} columns={5} showStore className="lg:[&>*:nth-child(6)]:hidden" />
+          </div>
         </section>
       )}
 
-      {/* Trending */}
-      <section className="container-x mt-20">
-        <SectionHeader eyebrow="Trending" title="What everyone's buying" href="/shop?sort=popular" />
-        <ProductGrid products={trending} />
+      <section className="container-x pt-14 sm:pt-20">
+        <PromoPanels groceryCount={counts.grocery || 0} electronicsCount={counts.electronics || 0} />
       </section>
 
-      {/* Stores */}
-      <section className="container-x mt-20">
-        <SectionHeader eyebrow="Stores" title="Meet the sellers" subtitle="Every store is reviewed by our team before it goes live." href="/stores" linkLabel="All stores" />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {stores.map((s) => (
-            <StoreCard key={s.id} store={s} />
-          ))}
-        </div>
+      <section className="container-x pt-14 sm:pt-20">
+        <SectionTitle title="Best sellers this month" href="/shop?sort=popular" />
+        <ProductGrid products={bestSellers} columns={5} showStore className="sm:max-lg:[&>*:nth-child(10)]:hidden" />
       </section>
 
-      {/* Groceries */}
-      {fresh.length > 0 && (
-        <section className="container-x mt-20">
-          <SectionHeader eyebrow="Fresh today" title="Groceries in under two hours" subtitle="Fruit, veg, dairy and pantry staples from Fresh Fields Market." href="/shop?category=grocery" />
-          <ProductRail products={fresh} />
-        </section>
-      )}
+      <section className="container-x pt-14 sm:pt-20">
+        <SectionTitle title="Popular local stores" href="/stores" linkLabel="View all stores" />
+        <StoreRow stores={popularStores} />
+      </section>
 
-      {/* How delivery works */}
-      <section className="container-x mt-20">
-        <div className="card !rounded-[32px] p-6 sm:p-10 lg:p-12 relative overflow-hidden">
-          <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-[image:var(--accent-grad)] opacity-20 blur-3xl" aria-hidden="true" />
-          <div className="relative grid lg:grid-cols-[1fr_1.4fr] gap-10 items-center">
-            <div>
-              <p className="eyebrow">Delivery</p>
-              <h2 className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight">Watch your order cross the city</h2>
-              <p className="mt-3 text-text-2 leading-relaxed">
-                Each store packs its part of your order. A nearby rider picks it up and you follow them live on the map. Hand over
-                your 4-digit code at the door and you&apos;re done.
-              </p>
-              <Link href="/account/orders" className="btn btn-secondary mt-6">
-                Track an order
-                <ArrowRight />
-              </Link>
-            </div>
-            <ol className="grid sm:grid-cols-2 gap-3">
-              {[
-                [CreditCard, "One checkout", "Pay once by card or cash on delivery, even across several stores."],
-                [PackageCheck, "Packed by the store", "Sellers confirm and pack. You see every step as it happens."],
-                [MapPinned, "Live rider map", "The rider's location updates every few seconds while they ride."],
-                [ShieldCheck, "Code at the door", "Your order is only marked delivered when you share your code."],
-              ].map(([Icon, title, text], i) => (
-                <li key={title} className="rounded-[20px] border border-border bg-surface p-5">
-                  <div className="flex items-center gap-3">
-                    <span className="grid place-items-center w-9 h-9 rounded-[12px] bg-accent-soft text-accent-text">
-                      <Icon className="w-[18px] h-[18px]" />
-                    </span>
-                    <span className="text-xs font-mono text-text-3">0{i + 1}</span>
-                  </div>
-                  <h3 className="mt-4 font-semibold">{title}</h3>
-                  <p className="mt-1 text-sm text-text-2 leading-relaxed">{text}</p>
-                </li>
-              ))}
-            </ol>
+      <section className="container-x pt-14 sm:pt-20 scroll-mt-28" id="how-it-works">
+        <div className="grid lg:grid-cols-[0.9fr_1.4fr] gap-10 lg:gap-16 border-t border-border pt-12 sm:pt-16">
+          <div>
+            <p className="eyebrow">How it works</p>
+            <h2 className="font-display mt-4 text-[40px] sm:text-[48px] leading-[1.04]">
+              One checkout, <em className="text-emphasis">many stores.</em>
+            </h2>
+            <p className="mt-4 max-w-md text-text-2 leading-relaxed">
+              Fill one cart from any number of independent shops. Each store packs its part, a nearby rider brings it over, and
+              you follow every step on the map.
+            </p>
+            <Link href="/shop" className="btn btn-primary mt-7">
+              Start shopping
+              <ArrowRight />
+            </Link>
           </div>
-        </div>
-      </section>
-
-      {/* New arrivals */}
-      <section className="container-x mt-20">
-        <SectionHeader eyebrow="Just in" title="New arrivals" href="/shop?sort=newest" />
-        <ProductGrid products={newest} />
-      </section>
-
-      {/* Sell CTA */}
-      <section className="container-x mt-20">
-        <div className="relative overflow-hidden rounded-[32px] p-8 sm:p-12 bg-[image:var(--accent-grad)] text-white">
-          <div className="absolute inset-0 opacity-25 bg-[radial-gradient(circle_at_80%_20%,white,transparent_45%)]" aria-hidden="true" />
-          <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div className="max-w-xl">
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight">Open your store on Vendora</h2>
-              <p className="mt-3 text-white/85 text-[17px] leading-relaxed">
-                List products in minutes, let AI write your descriptions, and get paid while our riders handle delivery.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/sell" className="btn btn-lg bg-white text-[#0b1517] hover:bg-white/90">
-                <Store />
-                Start selling
-              </Link>
-              <Link href="/stores" className="btn btn-lg bg-white/15 text-white border-white/30 hover:bg-white/25">
-                <Bike />
-                See our sellers
-              </Link>
-            </div>
-          </div>
+          <ol className="grid sm:grid-cols-2 gap-x-10 gap-y-9">
+            {[
+              [CreditCard, "Pay once", "Check out by card or cash on delivery, even when your cart spans several stores."],
+              [PackageCheck, "Packed by the store", "Sellers confirm and pack your items. You see every step as it happens."],
+              [MapPinned, "Follow your rider", "Once it's picked up, the rider's location updates on your order page every few seconds."],
+              [ShieldCheck, "Code at the door", "Your order is only marked delivered when you share your 4-digit code."],
+            ].map(([Icon, title, text], i) => (
+              <li key={title} className="border-t border-border pt-5">
+                <div className="flex items-center justify-between">
+                  <Icon className="w-5 h-5 text-accent-text" strokeWidth={1.6} />
+                  <span className="text-xs text-text-3 tabular-nums">0{i + 1}</span>
+                </div>
+                <h3 className="mt-4 text-[17px] font-semibold">{title}</h3>
+                <p className="mt-1.5 text-[14px] text-text-2 leading-relaxed">{text}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
     </>

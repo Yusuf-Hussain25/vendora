@@ -126,8 +126,19 @@ export async function getStoresWithStats({ take } = {}) {
     _sum: { ratingCount: true, soldCount: true },
   });
   const byStore = Object.fromEntries(ratings.map((r) => [r.storeId, r]));
+  // Each store's main department = the category it lists the most products in
+  const mix = await prisma.product.groupBy({
+    by: ["storeId", "category"],
+    where: { storeId: { in: stores.map((s) => s.id) }, isActive: true },
+    _count: true,
+  });
+  const mainCategory = {};
+  for (const row of mix) {
+    if (!mainCategory[row.storeId] || row._count > mainCategory[row.storeId]._count) mainCategory[row.storeId] = row;
+  }
   return stores.map((s) => ({
     ...s,
+    mainCategory: mainCategory[s.id]?.category || null,
     productCount: s._count.products,
     rating: byStore[s.id]?._avg.ratingAvg || 0,
     reviews: byStore[s.id]?._sum.ratingCount || 0,
