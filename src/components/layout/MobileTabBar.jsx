@@ -44,7 +44,7 @@ export default function MobileTabBar() {
               <span className="relative">
                 <Icon className="w-[22px] h-[22px]" strokeWidth={active ? 2.2 : 1.8} />
                 {badge > 0 && (
-                  <span className="absolute -top-1.5 -right-2.5 min-w-[17px] h-[17px] px-1 rounded-full text-[10px] font-bold grid place-items-center text-white bg-[image:var(--accent-grad)]">
+                  <span className="absolute -top-1.5 -right-2.5 min-w-[17px] h-[17px] px-1 rounded-full text-[10px] font-bold grid place-items-center bg-accent text-on-accent">
                     {badge}
                   </span>
                 )}

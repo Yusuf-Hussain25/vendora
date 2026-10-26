@@ -64,7 +64,7 @@ export default function AccountMenu() {
         <Avatar src={user.image} name={user.name} size={34} />
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-64 rounded-[20px] bg-panel-solid border border-border shadow-lg p-2 fade-up z-50">
+        <div className="absolute right-0 mt-2 w-64 rounded-[12px] bg-panel-solid border border-border shadow-lg p-2 fade-up z-50">
           <div className="px-3 py-2.5 mb-1">
             <p className="font-semibold truncate">{user.name}</p>
             <p className="text-xs text-text-3 truncate">{user.email}</p>
