@@ -31,6 +31,15 @@ enum OrderStatus {
   CANCELLED
 }
 
+enum StockReason {
+  INITIAL
+  SALE
+  CANCEL
+  RESTOCK
+  COUNT
+  ADJUST
+}
+
 enum PaymentMethod {
   COD
   STRIPE
@@ -162,6 +171,9 @@ model Product {
   sizes       String[]  @default([])
   tags        String[]  @default([])
   stock       Int       @default(50)
+  // Inventory: a short stock-keeping code and the level that counts as "low"
+  sku          String?   @unique
+  reorderLevel Int       @default(5)
   isActive    Boolean   @default(true)
   ratingAvg   Float     @default(0)
   ratingCount Int       @default(0)
@@ -173,6 +185,7 @@ model Product {
   orderItems OrderItem[]
   ratings    Rating[]
   wishlisted WishlistItem[]
+  movements  StockMovement[]
 
   @@index([category])
   @@index([storeId])
@@ -294,4 +307,24 @@ model WishlistItem {
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@id([userId, productId])
+}
+
+// Every change to a product's stock, so the numbers always reconcile
+model StockMovement {
+  id        String      @id @default(cuid())
+  productId String
+  storeId   String
+  change    Int
+  // Stock level after this change
+  balance   Int
+  reason    StockReason
+  note      String?
+  userId    String?
+  orderId   String?
+  createdAt DateTime    @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, createdAt])
+  @@index([storeId, createdAt])
 }

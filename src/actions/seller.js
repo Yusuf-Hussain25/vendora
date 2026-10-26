@@ -6,6 +6,7 @@ import { assertSeller, assertUser } from "@/lib/session";
 import { categoryBySlug } from "@/lib/catalog";
 import { round2 } from "@/lib/pricing";
 import { SELLER_TRANSITIONS, withStatus } from "@/lib/orders";
+import { logMovement, newSku } from "@/lib/inventory";
 
 const text = (value, max = 200) => String(value ?? "").trim().slice(0, max);
 const isHttps = (url) => /^https:\/\/\S+$/i.test(url);
@@ -125,9 +126,23 @@ export async function saveProduct(input) {
     if (input.id) {
       const existing = await prisma.product.findFirst({ where: { id: input.id, storeId: user.store.id } });
       if (!existing) return { error: "Product not found." };
-      product = await prisma.product.update({ where: { id: existing.id }, data });
+      product = await prisma.$transaction(async (tx) => {
+        const updated = await tx.product.update({ where: { id: existing.id }, data });
+        await logMovement(tx, {
+          productId: updated.id, storeId: updated.storeId, change: updated.stock - existing.stock, balance: updated.stock,
+          reason: "ADJUST", note: "Edited on the product form", userId: user.id,
+        });
+        return updated;
+      });
     } else {
-      product = await prisma.product.create({ data: { ...data, storeId: user.store.id } });
+      product = await prisma.$transaction(async (tx) => {
+        const created = await tx.product.create({ data: { ...data, sku: newSku(), storeId: user.store.id } });
+        await logMovement(tx, {
+          productId: created.id, storeId: created.storeId, change: created.stock, balance: created.stock,
+          reason: "INITIAL", note: "Opening stock", userId: user.id,
+        });
+        return created;
+      });
     }
     revalidatePath("/seller/products");
     revalidatePath(`/product/${product.id}`);
@@ -157,10 +172,15 @@ export async function setProductActive(productId, isActive) {
 
 export async function setProductStock(productId, stock) {
   try {
-    await ownProduct(productId);
+    const product = await ownProduct(productId);
     const value = Math.floor(Number(stock));
     if (!Number.isInteger(value) || value < 0 || value > 100000) return { error: "Enter a stock level from 0 upwards." };
-    await prisma.product.update({ where: { id: productId }, data: { stock: value } });
+    await prisma.$transaction(async (tx) => {
+      await tx.product.update({ where: { id: productId }, data: { stock: value } });
+      await logMovement(tx, {
+        productId, storeId: product.storeId, change: value - product.stock, balance: value, reason: "ADJUST", note: "Edited in the products table",
+      });
+    });
     revalidatePath("/seller/products");
     return { ok: true };
   } catch (error) {
@@ -225,9 +245,13 @@ export async function sellerUpdateOrder(orderId, status) {
     await prisma.$transaction(async (tx) => {
       if (status === "CANCELLED") {
         for (const item of order.items) {
-          await tx.product.update({
+          const product = await tx.product.update({
             where: { id: item.productId },
             data: { stock: { increment: item.quantity }, soldCount: { decrement: item.quantity } },
+          });
+          await logMovement(tx, {
+            productId: item.productId, storeId: order.storeId, change: item.quantity, balance: product.stock,
+            reason: "CANCEL", note: `Order ${order.number}: cancelled by the store`, userId: user.id, orderId: order.id,
           });
         }
       }

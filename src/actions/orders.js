@@ -8,6 +8,7 @@ import { assertUser, AuthError } from "@/lib/session";
 import { couponProblem, deliveryFeeFor, effectivePrice, parseLineKey, round2 } from "@/lib/pricing";
 import { BUYER_CAN_CANCEL, newDeliveryOtp, newOrderNumber, placedOrder, stripe, withStatus } from "@/lib/orders";
 import { CURRENCY } from "@/lib/format";
+import { logMovement } from "@/lib/inventory";
 
 const fail = (error) => ({ error: error instanceof AuthError ? error.message : error?.message || String(error) });
 
@@ -139,6 +140,17 @@ export async function placeOrder({ lines, addressId, couponCode, paymentMethod }
           })
         );
       }
+      // Stock history: one SALE entry per product per order
+      for (const order of created) {
+        const items = await tx.orderItem.groupBy({ by: ["productId"], where: { orderId: order.id }, _sum: { quantity: true } });
+        for (const item of items) {
+          const product = await tx.product.findUnique({ where: { id: item.productId }, select: { stock: true } });
+          await logMovement(tx, {
+            productId: item.productId, storeId: order.storeId, change: -item._sum.quantity, balance: product.stock,
+            reason: "SALE", note: `Order ${order.number}`, userId: user.id, orderId: order.id,
+          });
+        }
+      }
       return created;
     });
 
@@ -184,9 +196,13 @@ export async function cancelUnpaidCheckout(checkoutId) {
     await prisma.$transaction(async (tx) => {
       for (const order of orders) {
         for (const item of order.items) {
-          await tx.product.update({
+          const product = await tx.product.update({
             where: { id: item.productId },
             data: { stock: { increment: item.quantity }, soldCount: { decrement: item.quantity } },
+          });
+          await logMovement(tx, {
+            productId: item.productId, storeId: order.storeId, change: item.quantity, balance: product.stock,
+            reason: "CANCEL", note: `Order ${order.number}: payment not completed`, userId: user.id, orderId: order.id,
           });
         }
         await tx.order.update({
@@ -210,9 +226,13 @@ export async function cancelOrder(orderId) {
 
     await prisma.$transaction(async (tx) => {
       for (const item of order.items) {
-        await tx.product.update({
+        const product = await tx.product.update({
           where: { id: item.productId },
           data: { stock: { increment: item.quantity }, soldCount: { decrement: item.quantity } },
+        });
+        await logMovement(tx, {
+          productId: item.productId, storeId: order.storeId, change: item.quantity, balance: product.stock,
+          reason: "CANCEL", note: `Order ${order.number}: cancelled by the shopper`, userId: user.id, orderId: order.id,
         });
       }
       await tx.order.update({
