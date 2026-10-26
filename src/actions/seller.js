@@ -9,6 +9,8 @@ import { SELLER_TRANSITIONS, withStatus } from "@/lib/orders";
 
 const text = (value, max = 200) => String(value ?? "").trim().slice(0, max);
 const isHttps = (url) => /^https:\/\/\S+$/i.test(url);
+// Store artwork may also be an image bundled with the app (e.g. the seeded monogram logos)
+const isImage = (url) => isHttps(url) || /^\/[\w\-./]+\.(svg|png|jpe?g|webp)$/i.test(url);
 const fail = (error) => ({ error: error?.message || "Something went wrong. Please try again." });
 
 // ------------------------------------------------------------------ store
@@ -30,8 +32,8 @@ function cleanStore(input) {
   if (!/^[a-z0-9-]{3,30}$/.test(data.username)) return { error: "Store link must be 3-30 lowercase letters, numbers or dashes." };
   if (data.tagline.length < 8) return { error: "Add a short tagline (at least 8 characters)." };
   if (data.description.length < 30) return { error: "Describe your store in at least 30 characters." };
-  if (!isHttps(data.logo)) return { error: "Add a logo image." };
-  if (data.banner && !isHttps(data.banner)) return { error: "The banner must be an https image link." };
+  if (!isImage(data.logo)) return { error: "Add a logo image." };
+  if (data.banner && !isImage(data.banner)) return { error: "The banner must be an https image link." };
   if (!/^\S+@\S+\.\S+$/.test(data.email)) return { error: "Enter a valid contact email." };
   if (data.phone.length < 7) return { error: "Enter a contact phone number." };
   if (!data.address || !data.city) return { error: "Add your pickup address and city." };

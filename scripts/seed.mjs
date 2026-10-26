@@ -161,9 +161,13 @@ const phoneFor = (r) => `+1 415 ${String(Math.floor(between(200, 999, r))).padSt
 const seedPasswordHash = await hashPassword(process.env.SEED_PASSWORD);
 const demoPasswordHash = await hashPassword(process.env.NEXT_PUBLIC_DEMO_PASSWORD);
 
-async function upsertUser({ email, name, image = null, role = "CUSTOMER", phone = null, vehicle = null, isOnline = false, passwordHash }) {
+async function upsertUser({ email, name, image = null, role = "CUSTOMER", phone = null, vehicle = null, isOnline = false, passwordHash, syncPassword = false }) {
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
+    // Keep the private admin's password in step with ADMIN_PASSWORD in .env
+    if (syncPassword) {
+      await prisma.account.updateMany({ where: { userId: existing.id, providerId: "credential" }, data: { password: passwordHash } });
+    }
     return prisma.user.update({ where: { id: existing.id }, data: { role, vehicle, isOnline, image: existing.image || image } });
   }
   const id = randomUUID().replace(/-/g, "");
@@ -258,7 +262,7 @@ if (process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL) {
   await upsertUser({ email: process.env.NEXT_PUBLIC_DEMO_ADMIN_EMAIL.toLowerCase(), name: "Morgan Admin", image: portrait("men", 3), role: "ADMIN", passwordHash: demoPasswordHash });
 }
 if (process.env.ADMIN_EMAIL && process.env.ADMIN_PASSWORD) {
-  await upsertUser({ email: process.env.ADMIN_EMAIL.toLowerCase(), name: "Vendora Admin", role: "ADMIN", passwordHash: await hashPassword(process.env.ADMIN_PASSWORD) });
+  await upsertUser({ email: process.env.ADMIN_EMAIL.toLowerCase(), name: "Vendora Admin", role: "ADMIN", passwordHash: await hashPassword(process.env.ADMIN_PASSWORD), syncPassword: true });
 }
 
 const riders = [];
@@ -289,13 +293,14 @@ for (const [index, def] of [...STORES, PENDING_STORE].entries()) {
   const spot = near(r, 0.025);
   const pending = def === PENDING_STORE;
 
+  // Monogram logos and banner photos ship with the app in /public
+  const artwork = { logo: `/stores/${def.username}.svg`, banner: `/images/stores/${def.username}.jpg` };
   const store = await prisma.store.upsert({
     where: { username: def.username },
-    update: {},
+    update: artwork,
     create: {
       ownerId: owner.id, name: def.name, username: def.username, tagline: def.tagline, description: def.description,
-      logo: `https://api.dicebear.com/9.x/shapes/png?seed=${def.username}&size=160&backgroundType=gradientLinear`,
-      banner: `https://picsum.photos/seed/vendora-${def.username}/1600/480`,
+      ...artwork,
       email: `hello@${def.username}.${DOMAIN}`, phone: phoneFor(r),
       address: `${Math.floor(between(100, 2900, r))} ${pick(STREETS, r)}`, city: "San Francisco",
       lat: spot.lat, lng: spot.lng, status: pending ? "PENDING" : "APPROVED", isActive: true,
