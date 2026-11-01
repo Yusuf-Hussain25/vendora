@@ -2,6 +2,8 @@
 
 **Independent stores. One cart. Live delivery.**
 
+**Live demo: [vendora.yusufhussain.in](https://vendora.yusufhussain.in)**. On the login page, pick **Explore with a demo account** to sign in as a shopper, admin or rider.
+
 Vendora is a multi-vendor marketplace for India: fashion, fresh groceries and Indian pantry brands, the latest iPhone, Mac and Galaxy devices, and home goods, all priced in rupees. Shoppers check out across many independent stores in a single cart and follow their rider live on a map. Sellers run their own storefronts with an AI listing assistant and flash deals, admins approve stores and dispatch riders, and riders hand over orders with a 4-digit door code.
 
 ![Vendora home page](docs/screenshots/home.png)
@@ -231,14 +233,24 @@ When the demo email and password are set, the login page shows **Explore with a 
 - Card orders are marked paid only after Stripe confirms the payment; the webhook verifies Stripe's signature
 - Products and stores that aren't approved and active never appear to shoppers
 - No secrets in the client bundle: only `NEXT_PUBLIC_` values (public by design) reach the browser
+- The shared demo logins can browse, shop, order and open every dashboard, but can't change what other visitors see (stores, products, coupons, reviews) or their own password, email, profile and sessions
 
-## Deployment (Vercel)
+## Deployment (Vercel + Neon, free tiers)
 
-1. Push the repo to GitHub and import it in Vercel. The framework preset is **Next.js** (no `vercel.json` is needed: Next.js routing works out of the box).
-2. Add the environment variables from `.env` in *Settings → Environment Variables*. Set `BETTER_AUTH_URL` and `NEXT_PUBLIC_APP_URL` to your Vercel URL.
-3. Deploy. The build runs `prisma generate && next build`.
-4. Run `npx prisma db push` and `npm run seed` once against the production `DATABASE_URL` from your machine.
-5. If you use Stripe, add the webhook endpoint `https://<your-app>/api/stripe/webhook` and copy its signing secret into `STRIPE_WEBHOOK_SECRET`.
+The live demo runs on **Vercel Hobby** with a **Neon** free Postgres database, and every push to `main` deploys automatically.
+
+1. Import the GitHub repo in Vercel (framework preset **Next.js**). Pushes to `main` now deploy to production; other branches get preview URLs.
+2. Add a database: `vercel integration add neon` (or Vercel → Storage → Neon). It sets `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED`; add `DIRECT_URL` with the unpooled value for Prisma.
+3. Add the other variables from `.env.example` in *Settings → Environment Variables*. Set `BETTER_AUTH_URL` and `NEXT_PUBLIC_APP_URL` to your domain, a fresh `BETTER_AUTH_SECRET`, a `CRON_SECRET`, and the project's `vercel.app` alias in `TRUSTED_ORIGINS`.
+4. From your machine, with the production database URLs in `.env`: `npx prisma db push`, then `npm run seed`.
+5. Custom subdomain: `vercel domains add <sub>.<your-domain> <project>`, then at your DNS provider add an **A** record `<sub>` → `76.76.21.21`. Vercel issues the HTTPS certificate.
+6. If you use Stripe, add the webhook endpoint `https://<your-domain>/api/stripe/webhook` and copy its signing secret into `STRIPE_WEBHOOK_SECRET`.
+
+**Staying fast on free tiers.** Vercel doesn't sleep. Neon's free compute pauses after 5 idle minutes and wakes in a few hundred milliseconds, so:
+
+- public catalog data (homepage rows, header counts, promo bar) is served from the Next.js data cache and refreshed every 2 minutes
+- the site quietly calls `/api/warm` on load, so the database is awake by the time a visitor logs in (it also works as a health check)
+- `vercel.json` schedules `/api/cron/demo-refresh` daily. For the seeded stores only, it keeps flash deals counting down, keeps the seeded coupons valid and restocks sold-out products, so the demo never goes stale
 
 ## Screenshots
 
