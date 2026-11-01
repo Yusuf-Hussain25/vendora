@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CreditCard, MapPinned, PackageCheck, ShieldCheck } from "lucide-react";
 import prisma from "@/lib/prisma";
+import { cachedQuery } from "@/lib/cache";
 import { getCategoryCounts, getLiveDeals, getStoresWithStats, productCardSelect, visibleProduct } from "@/lib/queries";
 import Hero from "@/components/home/Hero";
 import CategoryRow from "@/components/home/CategoryRow";
@@ -26,7 +27,9 @@ function SectionTitle({ title, subtitle, href, linkLabel = "View all" }) {
   );
 }
 
-export default async function HomePage() {
+// Everything on the homepage is public catalog data, so it is cached and refreshed every
+// couple of minutes instead of being queried on every visit.
+const getHomeData = cachedQuery(async () => {
   const [deals, bestSellers, stores, counts, featured] = await Promise.all([
     getLiveDeals(10),
     prisma.product.findMany({ where: visibleProduct, select: productCardSelect, orderBy: { soldCount: "desc" }, take: 10 }),
@@ -55,6 +58,11 @@ export default async function HomePage() {
     orderBy: { mrp: "desc" },
     take: 10,
   });
+  return { deals, bestSellers, stores, counts, heroPicks, launches };
+}, ["home"]);
+
+export default async function HomePage() {
+  const { deals, bestSellers, stores, counts, heroPicks, launches } = await getHomeData();
 
   const popularStores = [...stores].sort((a, b) => b.sold - a.sold).slice(0, 8);
   // Lead with the most notable deal from each department, then fill with the rest

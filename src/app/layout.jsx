@@ -7,6 +7,7 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import UserProvider from "@/components/providers/UserProvider";
 import CartProvider from "@/components/providers/CartProvider";
 import WishlistProvider from "@/components/providers/WishlistProvider";
+import DbWarmup from "@/components/providers/DbWarmup";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 // Bolder serif for the wordmark and section titles
@@ -44,6 +45,7 @@ export default async function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
+        <DbWarmup />
         <ThemeProvider>
           <UserProvider user={summary}>
             <CartProvider key={user?.id || "guest"} signedIn={Boolean(user)} initialCart={user?.cart}>

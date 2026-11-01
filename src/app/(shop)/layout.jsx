@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/session";
 import { getCategoryCounts } from "@/lib/queries";
+import { cachedQuery } from "@/lib/cache";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -15,11 +16,13 @@ async function featuredCoupon() {
   });
 }
 
+// The promo bar and menu counts are the same for every visitor, so they come from the cache
+const getHeaderData = cachedQuery(() => Promise.all([featuredCoupon(), getCategoryCounts()]), ["shop-header"]);
+
 export default async function ShopLayout({ children }) {
   const user = await getCurrentUser();
-  const [coupon, categoryCounts, addresses] = await Promise.all([
-    featuredCoupon(),
-    getCategoryCounts(),
+  const [[coupon, categoryCounts], addresses] = await Promise.all([
+    getHeaderData(),
     user
       ? prisma.address.findMany({
           where: { userId: user.id },

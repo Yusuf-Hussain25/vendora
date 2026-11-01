@@ -12,8 +12,15 @@ const google =
     ? { google: { clientId: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET } }
     : {};
 
+// BETTER_AUTH_URL is the custom domain. Also trust this deployment's own Vercel URLs, so
+// logging in works on the vercel.app address and on preview deployments too.
+const vercelOrigins = [process.env.VERCEL_URL, process.env.VERCEL_BRANCH_URL, process.env.VERCEL_PROJECT_PRODUCTION_URL]
+  .filter(Boolean)
+  .map((host) => `https://${host}`);
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "postgresql" }),
+  trustedOrigins: vercelOrigins,
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,
