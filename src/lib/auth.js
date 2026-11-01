@@ -1,7 +1,20 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
+import { APIError, createAuthMiddleware, getSessionFromCtx } from "better-auth/api";
 import prisma from "@/lib/prisma";
+import { DEMO_BLOCKED_MESSAGE, isDemoEmail } from "@/lib/demo";
+
+const DEMO_LOCKED_ROUTES = new Set([
+  "/change-password",
+  "/change-email",
+  "/update-user",
+  "/delete-user",
+  "/revoke-sessions",
+  "/revoke-other-sessions",
+  "/link-social",
+  "/unlink-account",
+]);
 
 if (!process.env.BETTER_AUTH_SECRET) {
   throw new Error("BETTER_AUTH_SECRET is not set. Add a long random string to .env (openssl rand -base64 32).");
@@ -38,6 +51,15 @@ export const auth = betterAuth({
       // Roles are only ever set by the seeder or an admin, never by sign-up input
       role: { type: "string", defaultValue: "CUSTOMER", input: false },
     },
+  },
+  hooks: {
+    // Everyone shares the demo logins, so nobody may change their password, email or
+    // profile, or sign the other visitors out.
+    before: createAuthMiddleware(async (ctx) => {
+      if (!DEMO_LOCKED_ROUTES.has(ctx.path)) return;
+      const session = await getSessionFromCtx(ctx);
+      if (isDemoEmail(session?.user?.email)) throw new APIError("FORBIDDEN", { message: DEMO_BLOCKED_MESSAGE });
+    }),
   },
   plugins: [nextCookies()],
 });

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
-import { assertSeller, assertUser } from "@/lib/session";
+import { assertSeller, assertUser, assertNotDemo } from "@/lib/session";
 import { categoryBySlug } from "@/lib/catalog";
 import { round2 } from "@/lib/pricing";
 import { SELLER_TRANSITIONS, withStatus } from "@/lib/orders";
@@ -68,6 +68,7 @@ export async function applyForStore(input) {
 
 export async function updateStore(input) {
   try {
+    await assertNotDemo();
     const user = await assertSeller();
     const { data, error } = cleanStore(input);
     if (error) return { error };
@@ -118,6 +119,7 @@ function cleanProduct(input) {
 
 export async function saveProduct(input) {
   try {
+    await assertNotDemo();
     const user = await assertSeller();
     const { data, error } = cleanProduct(input);
     if (error) return { error };
@@ -161,6 +163,7 @@ async function ownProduct(productId) {
 
 export async function setProductActive(productId, isActive) {
   try {
+    await assertNotDemo();
     await ownProduct(productId);
     await prisma.product.update({ where: { id: productId }, data: { isActive: Boolean(isActive) } });
     revalidatePath("/seller/products");
@@ -190,6 +193,7 @@ export async function setProductStock(productId, stock) {
 
 export async function deleteProduct(productId) {
   try {
+    await assertNotDemo();
     await ownProduct(productId);
     // Products that appear in orders are hidden instead of deleted, so order history stays intact
     const ordered = await prisma.orderItem.count({ where: { productId } });

@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { DEMO_BLOCKED_MESSAGE, isDemoEmail } from "@/lib/demo";
 
 // The signed-in user with their store, read fresh from the database once per request.
 // Roles come from the database (not the session cookie) so changes apply immediately.
@@ -49,6 +50,13 @@ export async function assertUser() {
 export async function assertRole(role) {
   const user = await assertUser();
   if (user.role !== role) throw new AuthError("You don't have access to do that.");
+  return user;
+}
+
+// Shared demo logins can't make changes other visitors would see (see lib/demo.js)
+export async function assertNotDemo() {
+  const user = await getCurrentUser();
+  if (isDemoEmail(user?.email)) throw new AuthError(DEMO_BLOCKED_MESSAGE);
   return user;
 }
 

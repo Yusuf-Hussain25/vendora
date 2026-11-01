@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
-import { assertUser, AuthError } from "@/lib/session";
+import { assertUser, AuthError, assertNotDemo } from "@/lib/session";
 import { couponProblem, deliveryFeeFor, effectivePrice, parseLineKey, round2 } from "@/lib/pricing";
 import { BUYER_CAN_CANCEL, newDeliveryOtp, newOrderNumber, placedOrder, stripe, withStatus } from "@/lib/orders";
 import { CURRENCY } from "@/lib/format";
@@ -250,6 +250,7 @@ export async function cancelOrder(orderId) {
 
 export async function rateItem({ orderId, productId, rating, review }) {
   try {
+    await assertNotDemo();
     const user = await assertUser();
     const stars = Math.round(Number(rating));
     const text = String(review || "").trim();

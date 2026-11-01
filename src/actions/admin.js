@@ -4,13 +4,14 @@ import { revalidatePath } from "next/cache";
 import prisma from "@/lib/prisma";
 import { randomUUID } from "node:crypto";
 import { hashPassword } from "better-auth/crypto";
-import { assertRole } from "@/lib/session";
+import { assertRole, assertNotDemo } from "@/lib/session";
 import { withStatus } from "@/lib/orders";
 
 const fail = (error) => ({ error: error?.message || "Something went wrong. Please try again." });
 
 export async function reviewStore(storeId, decision) {
   try {
+    await assertNotDemo();
     await assertRole("ADMIN");
     if (!["APPROVED", "REJECTED"].includes(decision)) return { error: "Unknown decision." };
     const store = await prisma.store.findUnique({ where: { id: storeId } });
@@ -27,6 +28,7 @@ export async function reviewStore(storeId, decision) {
 
 export async function setStoreActive(storeId, isActive) {
   try {
+    await assertNotDemo();
     await assertRole("ADMIN");
     await prisma.store.update({ where: { id: storeId }, data: { isActive: Boolean(isActive) } });
     revalidatePath("/admin/stores");
@@ -39,6 +41,7 @@ export async function setStoreActive(storeId, isActive) {
 
 export async function createCoupon(input) {
   try {
+    await assertNotDemo();
     await assertRole("ADMIN");
     const code = String(input.code || "").trim().toUpperCase();
     const discount = Number(input.discount);
@@ -71,6 +74,7 @@ export async function createCoupon(input) {
 
 export async function deleteCoupon(code) {
   try {
+    await assertNotDemo();
     await assertRole("ADMIN");
     await prisma.coupon.delete({ where: { code } });
     revalidatePath("/admin/coupons");
@@ -100,6 +104,7 @@ export async function assignRider(orderId, riderId) {
 
 export async function createRider(input) {
   try {
+    await assertNotDemo();
     await assertRole("ADMIN");
     const name = String(input.name || "").trim();
     const email = String(input.email || "").trim().toLowerCase();
